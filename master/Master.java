@@ -1,3 +1,5 @@
+package master;
+
 import filehandling.FileHandling;
 
 public class Master {

@@ -1,29 +1,21 @@
 package ui;
 
 import swimmer.Swimmer;
-import swimmer.Master;
+import system.SystemRunning;
 
 import java.util.Scanner;
 
 public class SystemMessages {
-    private Main main;
+    private SystemRunning systemRunning;
 
     // Constructor
-    public SystemMessages(Main main) {
-        this.main = main;
+    public SystemMessages() {
+        systemRunning = new SystemRunning();
     }
 
-    // Prints appointment information
-    public void printAppointment(Appointment appointment) {
-        UI.printf("%s%04d-%02d/%02d%s, %02d:%02d, %s, %s%n", ConsoleColors.YELLOW,
-                Integer.parseInt(appointment.getYear()),
-                Integer.parseInt(appointment.getMonth()),
-                Integer.parseInt(appointment.getDay()),
-                ConsoleColors.RESET,
-                Integer.parseInt(appointment.getHour()),
-                Integer.parseInt(appointment.getMinute()),
-                appointment.getCustomerName(),
-                appointment.getAddedProducts());
+    // Prints swimmer information
+    public void printSwimmer(Swimmer swimmer) {
+        // EMPTY BODY
     }
 
     // Press ENTER to continue
@@ -43,7 +35,7 @@ public class SystemMessages {
     // Exit system
     public void quitSystem() {
         UI.println("Cya!");
-        main.setRunning(false);
+        SystemRunning.setRunning(false);
     }
 
 }
