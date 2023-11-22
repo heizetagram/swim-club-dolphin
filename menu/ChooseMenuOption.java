@@ -1,32 +1,16 @@
 package menu;
 
-import accounting.DailyTurnover;
-import accounting.FinancialAppointmentInfo;
-import appointment.ModifyAppointment;
-import date.AvailableDate;
-import date.PromptDate;
-import harryssalon.Main;
+import filehandling.ModifySwimmer;
 import ui.SystemMessages;
 import ui.UI;
 
 public class ChooseMenuOption {
-    private Main main;
-    private SystemMessages systemMessages;
-    private ModifyAppointment modifyAppointment;
-    private AvailableDate availableDate;
-    private PromptDate promptDate;
-    private DailyTurnover dailyTurnover;
-    private FinancialAppointmentInfo financialAppointmentInfo;
+    private String currentRole;
+    private ModifySwimmer modifySwimmer;
 
     // Constructor
-    public ChooseMenuOption(Main main) {
-        this.main = main;
-        systemMessages = new SystemMessages(main);
-        modifyAppointment = new ModifyAppointment(main);
-        availableDate = new AvailableDate(main);
-        promptDate = new PromptDate(main);
-        dailyTurnover = new DailyTurnover(main);
-        financialAppointmentInfo = new FinancialAppointmentInfo(main);
+    public ChooseMenuOption() {
+        modifySwimmer = new ModifySwimmer();
     }
 
     // CHOOSE MENU OPTIONS \\
@@ -34,32 +18,33 @@ public class ChooseMenuOption {
     // Choose option in role selection menu
     public void chooseRoleSelectionMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> main.setCurrentRole("trainer");
-            case 2 -> main.setCurrentRole("foreman");
-            case 3 -> main.setCurrentRole("accountant");
-            case 9 -> systemMessages.quitSystem();
-            default -> systemMessages.tryAgain();
+            case 1 -> chooseTrainerMenuOption();
+            case 2 -> chooseForemanMenuOption();
+            case 3 -> chooseAccountantMenuOption();
+            case 9 -> SystemMessages.quitSystem();
+            default -> SystemMessages.tryAgain();
         }
     }
 
     // Choose option in Customer's Menu
     public void chooseTrainerMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> {availableDate.viewAvailableDates(); systemMessages.pressEnterToContinue();}
-            case 9 -> systemMessages.quitSystem();
-            default -> systemMessages.tryAgain();
+          //  case 1 ->
+            case 9 -> SystemMessages.quitSystem();
+            default -> SystemMessages.tryAgain();
         }
     }
 
     // Choose option in Harry's Menu
     public void chooseForemanMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> {modifyAppointment.bookAppointment(); systemMessages.pressEnterToContinue();}
-            case 2 -> {modifyAppointment.deleteAppointment(); systemMessages.pressEnterToContinue();}
-            case 3 -> {modifyAppointment.editAppointment(); systemMessages.pressEnterToContinue();}
-            case 4 -> {modifyAppointment.viewAppointment(); systemMessages.pressEnterToContinue();}
-            case 9 -> systemMessages.quitSystem();
-            default -> systemMessages.tryAgain();
+            case 1 -> {modifySwimmer.addSwimmer(); SystemMessages.pressEnterToContinue();}
+            //case 2 -> {modifySwimmer.deleteSwimmer(); SystemMessages.pressEnterToContinue();}
+            case 3 -> {modifySwimmer.editSwimmer(); SystemMessages.pressEnterToContinue();}
+            //case 4 -> {modifySwimmer.viewSwimmers(); SystemMessages.pressEnterToContinue();}
+            case 5 -> {modifySwimmer.addCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
+            case 9 -> SystemMessages.quitSystem();
+            default -> SystemMessages.tryAgain();
         }
     }
 
