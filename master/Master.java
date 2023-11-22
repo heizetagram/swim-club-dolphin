@@ -16,7 +16,14 @@ public class Master {
     private void run() {
         initVars();
 
-        fileHandling.saveAppointmentsToFile();
-        fileHandling.loadAppointmentsFromFile();
+        fileHandling.saveSwimmerToFile();
+        fileHandling.loadSwimmerFromFile();
+
+        SystemRunning.setRunning(true);
+
+        while (SystemRunning.isRunning()) {
+            ShowMenu.showRoleSelection();
+            chooseMenuOption.chooseRoleSelectionMenuOption();
+        }
     }
 }
