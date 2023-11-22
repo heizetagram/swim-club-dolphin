@@ -17,7 +17,7 @@ public class FileHandling {
     }
 
     // Read appointments logic
-    public void loadAppointmentsFromFile() {
+    public void loadSwimmerFromFile() {
         File file = new File("swimmers.txt"); {
             try (Scanner scanner = new Scanner(file)) {
                 while (scanner.hasNextLine()) {
@@ -34,7 +34,7 @@ public class FileHandling {
     }
 
     // Save appointments logic
-    public void saveAppointmentsToFile() {
+    public void saveSwimmerToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("swimmers.txt"))) {
             for (Swimmer swimmer : swimmer.getSwimmers()) {
                 writer.write(swimmer.getName() + ", " + swimmer.getBirthYear() + ", " + swimmer.getEmail() + ", " + swimmer.getPhone());
