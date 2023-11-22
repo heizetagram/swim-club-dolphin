@@ -13,7 +13,7 @@ public class FileHandling {
     private Swimmer swimmer;
 
     public FileHandling() {
-        this.swimmer = new Swimmer("", 0, "", "");
+        this.swimmer = new Swimmer("", "", 0, "");
     }
 
     // Read appointments logic
@@ -24,7 +24,7 @@ public class FileHandling {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
                     if (parts.length == 4) {
-                        swimmer.getSwimmers().add(new Swimmer(parts[0], Integer.parseInt(parts[1]), parts[2], parts[3]));
+                        swimmer.getSwimmers().add(new Swimmer(parts[0], parts[1], Integer.parseInt(parts[2]), parts[3]));
                     }
                 }
             } catch (IOException e) {
@@ -37,7 +37,7 @@ public class FileHandling {
     public void saveSwimmerToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("swimmers.txt"))) {
             for (Swimmer swimmer : swimmer.getSwimmers()) {
-                writer.write(swimmer.getName() + ", " + swimmer.getBirthYear() + ", " + swimmer.getEmail() + ", " + swimmer.getPhone());
+                writer.write(swimmer.getName() + ", " + swimmer.getBirthdate() + ", " + swimmer.getEmail() + ", " + swimmer.getPhone());
                 writer.newLine();
             }
         } catch (IOException e) {
