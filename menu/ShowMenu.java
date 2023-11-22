@@ -6,7 +6,7 @@ import ui.UI;
 public class ShowMenu {
 
     // SHOW MENUS \\
-    public void showRoleSelection() {
+    public static void showRoleSelection() {
         UI.println("Welcome to the Dolphin\nAre you: ");
         UI.println("(1) Trainer");
         UI.println("(2) Foreman");
@@ -14,19 +14,19 @@ public class ShowMenu {
         UI.println("(9) Quit");
     }
 
-    public void showTrainerMenu() {
+    public static void showTrainerMenu() {
         UI.println("(1) View available swimmers");
         UI.println("(9) Quit");
     }
 
-    public void showAccountantMenu() {
+    public static void showAccountantMenu() {
         UI.println("(1) View all swimmers");
         UI.println("(2) View swimmer details on a specific date");
         UI.println("(3) Calculate daily turnover for a specific date ");
         UI.println("(9) Quit");
     }
 
-    public void showForemanMenu() {
+    public static void showForemanMenu() {
         UI.println("(1) Add swimmer");
         UI.println("(2) Delete swimmer");
         UI.println("(3) Edit swimmer");
@@ -34,7 +34,7 @@ public class ShowMenu {
         UI.println("(9) Quit");
     }
 
-    public void showAddProductMenu() {
+    public static void showSwimTimeMenu() {
         UI.println("Enter additional purchase:");
         UI.printf("%s%s%5d DKK%s%n", "(1) Shampoo", ConsoleColors.GREEN_BRIGHT, 50, ConsoleColors.RESET);
         UI.printf("%s%s%7d DKK%s%n", "(2) Balsam", ConsoleColors.GREEN_BRIGHT, 100, ConsoleColors.RESET);
