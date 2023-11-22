@@ -18,7 +18,7 @@ public class Login {
         chooseMenuOption = new ChooseMenuOption();
     }
 
-    // Customer
+    // Login Trainer
     public void loginTrainer() {
         while (SystemRunning.isRunning()) { // Keep showing Customer's menu while logged in
             showMenu.showTrainerMenu();
@@ -26,8 +26,8 @@ public class Login {
         }
     }
 
-    // Harry password
-    public void loginHarry() {
+    // Foreman password
+    public void loginForeman() {
         UI.println("Enter password");
         UI.promptString(); // Scanner bug
         password.checkPassword(UI.promptString(), "1");
@@ -36,7 +36,7 @@ public class Login {
             chooseMenuOption.chooseForemanMenuOption();
         }
         if (!password.isPasswordCorrect()) {
-            main.setRunning(false);
+            SystemRunning.setRunning(false);
         }
     }
 
