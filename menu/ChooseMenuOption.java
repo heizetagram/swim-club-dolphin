@@ -35,7 +35,7 @@ public class ChooseMenuOption {
         }
     }
 
-    // Choose option in Harry's Menu
+    // Choose option in Foreman's Menu
     public void chooseForemanMenuOption() {
         switch (UI.promptInt()) {
             case 1 -> {modifySwimmer.addSwimmer(); SystemMessages.pressEnterToContinue();}
@@ -51,11 +51,8 @@ public class ChooseMenuOption {
     // Choose option in Accountant Menu
     public void chooseAccountantMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> {modifyAppointment.viewAllSortedAppointments(); systemMessages.pressEnterToContinue();}
-            case 2 -> {financialAppointmentInfo.viewFinancialAppointment(); systemMessages.pressEnterToContinue();}
-            case 3 -> {dailyTurnover.calculateDailyTurnover(); systemMessages.pressEnterToContinue();}
-            case 9 -> systemMessages.quitSystem();
-            default -> systemMessages.tryAgain();
+            case 9 -> SystemMessages.quitSystem();
+            default -> SystemMessages.tryAgain();
         }
     }
 }
