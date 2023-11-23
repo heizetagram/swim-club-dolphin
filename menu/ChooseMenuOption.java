@@ -5,7 +5,6 @@ import ui.SystemMessages;
 import ui.UI;
 
 public class ChooseMenuOption {
-    private String currentRole;
     private ModifySwimmer modifySwimmer;
 
     // Constructor
@@ -29,7 +28,7 @@ public class ChooseMenuOption {
     // Choose option in Customer's Menu
     public void chooseTrainerMenuOption() {
         switch (UI.promptInt()) {
-          //  case 1 ->
+          // case 1 ->
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }
