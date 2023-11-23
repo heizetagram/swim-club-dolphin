@@ -25,6 +25,7 @@ public class ModifySwimmer {
 
 
     public ModifySwimmer() {
+        swimmmer = new Swimmer("", "", 0, "");
         fileHandling = new FileHandling();
         promptSwimmer = new PromptSwimmer();
         competitiveSwimmer = new CompetitiveSwimmer("", "", 0, "", null, "");
@@ -32,8 +33,9 @@ public class ModifySwimmer {
 
     public void addSwimmer() {
         String name = promptSwimmer.promptSwimmerName();
-        int age = promptSwimmer.promptBirthYearAndCalculateAge();
+        String birthdate = promptSwimmer.promptBirthdate();
         int phone = promptSwimmer.promptSwimmerPhoneNumber();
+        UI.promptString();
         String email = promptSwimmer.promptSwimmerEmail();
 
         swimmmer.getSwimmers().add(new Swimmer(name, birthdate, phone, email ));
@@ -84,7 +86,6 @@ public class ModifySwimmer {
         birthdate = promptSwimmer.promptBirthdate();
         phone = promptSwimmer.promptSwimmerPhoneNumber();
         email = promptSwimmer.promptSwimmerEmail();
-
     }
 
     private void initNewSwimmerPrompts() {
