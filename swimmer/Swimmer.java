@@ -8,6 +8,7 @@ public class Swimmer {
     private String birthdate;
     private int phone;
     private String email;
+    private boolean isJunior;
 
     public Swimmer(String name, String birthdate, int phone, String email) {
         swimmers = new ArrayList<>();
@@ -15,7 +16,14 @@ public class Swimmer {
         this.birthdate = birthdate;
         this.phone = phone;
         this.email = email;
+        //isJunior = checkIfUnderage(age);
     }
+
+    /*
+    private boolean checkIfUnderage(int age) {
+    }
+     */
+
 
     // Getters
     public ArrayList<Swimmer> getSwimmers() {
