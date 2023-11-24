@@ -1,6 +1,7 @@
 package swimmer;
 
 
+import system.SystemRunning;
 import ui.SystemMessages;
 import ui.UI;
 
@@ -65,9 +66,9 @@ public class PromptSwimmer {
 
     // Converts String birthdate to LocalDateTime
     private LocalDateTime convertBirthdateToLocalDateTime(String[] parts) {
-        int year = Integer.parseInt(parts[0]);
+        int day = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
-        int day = Integer.parseInt(parts[2]);
+        int year = Integer.parseInt(parts[2]);
 
         return LocalDateTime.of(year, month, day, 0, 0);
     }

@@ -1,8 +1,10 @@
 package master;
 
 import filehandling.FileHandling;
+import filehandling.ModifySwimmer;
 import menu.ChooseMenuOption;
 import menu.ShowMenu;
+import swimmer.Swimmer;
 import system.SystemRunning;
 
 public class Master {
@@ -23,6 +25,9 @@ public class Master {
 
         fileHandling.saveSwimmerToFile();
         fileHandling.loadSwimmerFromFile();
+
+        ModifySwimmer modifySwimmer = new ModifySwimmer();
+        modifySwimmer.addSwimmer();
 
         SystemRunning.setRunning(true);
 

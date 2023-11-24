@@ -33,11 +33,14 @@ public class FileHandling {
         }
     }
 
-    // Save appointments logic
+    // Save swimmer logic
     public void saveSwimmerToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("swimmers.txt"))) {
             for (Swimmer swimmer : swimmer.getSwimmers()) {
-                writer.write(swimmer.getName() + ", " + swimmer.getBirthdate() + ", " + swimmer.getEmail() + ", " + swimmer.getPhone());
+                writer.write(swimmer.getName()
+                        + ", " + swimmer.getBirthdate()
+                        + ", " + swimmer.getPhone()
+                        + ", " + swimmer.getEmail());
                 writer.newLine();
             }
         } catch (IOException e) {

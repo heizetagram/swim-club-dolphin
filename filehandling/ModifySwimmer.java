@@ -1,5 +1,6 @@
 package filehandling;
 
+import menu.ShowMenu;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Discipline;
 import swimmer.PromptSwimmer;
@@ -24,56 +25,64 @@ public class ModifySwimmer {
 
 
     public ModifySwimmer() {
+        swimmmer = new Swimmer("", "", 0, "");
         fileHandling = new FileHandling();
         promptSwimmer = new PromptSwimmer();
         competitiveSwimmer = new CompetitiveSwimmer("", "", 0,"", null, "");
     }
 
-    public void addSwimmer() {
+    public void addSwimmer(){
         UI.promptString(); //scanner bug
         String name = promptSwimmer.promptSwimmerName();
-        int age = promptSwimmer.promptBirthYearAndCalculateAge();
+        String birthdate = promptSwimmer.promptBirthdate();
         int phone = promptSwimmer.promptSwimmerPhoneNumber();
+        UI.promptString();
         String email = promptSwimmer.promptSwimmerEmail();
-    }
+
+        swimmmer.getSwimmers().add(new Swimmer(name, birthdate, phone, email ));
+        fileHandling.saveSwimmerToFile();
+           }
 
     public void addCompetitiveSwimmer() {
         UI.promptString(); //scanner bug
-        String discipline = UI.promptString();
-        switch (discipline) {
-            case "1" -> competitiveSwimmer.setDiscipline(Discipline.BACK);
-            case "2" -> competitiveSwimmer.setDiscipline(Discipline.BREAST);
-            case "3" -> competitiveSwimmer.setDiscipline(Discipline.CRAWL);
-            case "4" -> competitiveSwimmer.setDiscipline(Discipline.BUTTERFLY);
-            case "5" -> competitiveSwimmer.setDiscipline(Discipline.MEDLEY);
-        }
+            String discipline = UI.promptString();
+            switch (discipline) {
+                case "1" -> competitiveSwimmer.setDiscipline(Discipline.BACK);
+                case "2" -> competitiveSwimmer.setDiscipline(Discipline.BREAST);
+                case "3" -> competitiveSwimmer.setDiscipline(Discipline.CRAWL);
+                case "4" -> competitiveSwimmer.setDiscipline(Discipline.BUTTERFLY);
+                case "5" -> competitiveSwimmer.setDiscipline(Discipline.MEDLEY);
+
+            }
     }
 
-    public void editSwimmer() {
-        initCurrentSwimmerPrompts();
-        Swimmer swimmerToEdit = null;
-        for (Swimmer swimmer : swimmmer.getSwimmers()) {
-            if (swimmer.getName().equals(name)
-                    && (swimmer.getEmail().equals(email)
-                    && (swimmer.getPhone() == phone
-                    && swimmer.getBirthdate().equals(birthdate)))) {
-                swimmerToEdit = swimmer;
+public void editSwimmer() {
+initCurrentSwimmerPrompts();
+Swimmer swimmerToEdit = null;
+for (Swimmer swimmer : swimmmer.getSwimmers()){
+if (swimmer.getName().equals(name)
+        && (swimmer.getEmail().equals(email)
+        && (swimmer.getPhone() == phone
+        && swimmer.getBirthdate().equals(birthdate)))) {
+        swimmerToEdit = swimmer;
 
-                UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
+        UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
 
-                initNewSwimmerPrompts();
+        initNewSwimmerPrompts();
 
-                SystemMessages.printGreenColoredText("Successfully edited appointment\n");
+        SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
 
-                setValueOfSwimmersToEdit(swimmerToEdit);
+        setValueOfSwimmersToEdit(swimmerToEdit);
 
-                fileHandling.saveSwimmerToFile();
-            }
-            if (swimmerToEdit == null) {
-                SystemMessages.printRedColoredText("No Swimmer found!\n");
-            }
-        }
+        fileHandling.saveSwimmerToFile();
     }
+                if (swimmerToEdit == null) {
+                    SystemMessages.printRedColoredText("No Swimmer found!\n");
+    }
+}
+
+
+}
 
     private void initCurrentSwimmerPrompts() {
         UI.promptString(); // Scanner bug
@@ -81,6 +90,7 @@ public class ModifySwimmer {
         birthdate = promptSwimmer.promptBirthdate();
         phone = promptSwimmer.promptSwimmerPhoneNumber();
         email = promptSwimmer.promptSwimmerEmail();
+
     }
     private void initNewSwimmerPrompts(){
         newName = promptSwimmer.promptSwimmerName();

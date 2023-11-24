@@ -5,7 +5,6 @@ import ui.SystemMessages;
 import ui.UI;
 
 public class ChooseMenuOption {
-    private String currentRole;
     private ModifySwimmer modifySwimmer;
 
     // Constructor
