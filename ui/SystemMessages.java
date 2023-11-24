@@ -28,8 +28,7 @@ public class SystemMessages {
 
     // Try again
     public static void tryAgain() {
-        UI.println(ConsoleColors.RED + "Try again!" + ConsoleColors.RESET);
-        UI.promptString(); // User prompt - Enter to show menu again
+        printRedColoredText("Please try again!");
     }
 
     // Print green colored text
