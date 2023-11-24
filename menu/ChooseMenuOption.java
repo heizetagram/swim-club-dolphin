@@ -17,9 +17,9 @@ public class ChooseMenuOption {
     // Choose option in role selection menu
     public void chooseRoleSelectionMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> chooseTrainerMenuOption();
-            case 2 -> chooseForemanMenuOption();
-            case 3 -> chooseAccountantMenuOption();
+            case 1 -> {ShowMenu.showTrainerMenu(); chooseTrainerMenuOption();}
+            case 2 -> {ShowMenu.showForemanMenu(); chooseForemanMenuOption();}
+            case 3 -> {ShowMenu.showAccountantMenu(); chooseAccountantMenuOption();}
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }
