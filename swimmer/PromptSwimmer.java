@@ -4,6 +4,7 @@ package swimmer;
 import ui.SystemMessages;
 import ui.UI;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -39,6 +40,7 @@ public class PromptSwimmer {
     public String promptBirthdate() {
         boolean running = true;
 
+        UI.promptString();
         UI.print("Enter birthdate (DD-MM-YYYY): ");
         String userBirthdate = UI.promptString();
 
@@ -48,10 +50,14 @@ public class PromptSwimmer {
             if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 4) {
                 SystemMessages.printRedColoredText("Date format must be (DD-MM-YYYY)");
                 SystemMessages.tryAgain();
+                userBirthdate = UI.promptString();
             } else {
-                LocalDateTime localDateTimeBirthdate = convertBirthdateToLocalDateTime(parts);
-                calculateAge(localDateTimeBirthdate);
-                running = false;
+                try {
+                    LocalDateTime localDateTimeBirthdate = convertBirthdateToLocalDateTime(parts);
+                    calculateAge(localDateTimeBirthdate);
+                } catch (DateTimeException e) {
+                    SystemMessages.printRedColoredText("Date doesn't exist");
+                }
             }
         }
         return userBirthdate;
