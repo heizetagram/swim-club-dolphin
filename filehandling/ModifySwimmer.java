@@ -16,25 +16,25 @@ public class ModifySwimmer {
     private String name;
     private String birthdate;
     private String email;
-    private int phone;
+    private String phone;
     private String newName;
     private String newBirthdate;
-    private int newPhone;
+    private String newPhone;
     private String newEmail;
 
 
     public ModifySwimmer() {
-        swimmmer = new Swimmer("", "", 0, "");
+      //  swimmmer = new Swimmer("", "", "", "");
         fileHandling = new FileHandling();
         promptSwimmer = new PromptSwimmer();
-        competitiveSwimmer = new CompetitiveSwimmer("", "", 0,"", null, "");
+        competitiveSwimmer = new CompetitiveSwimmer("", "", "","", null, "");
     }
 
     public void addSwimmer(){
         UI.promptString(); //scanner bug
         String name = promptSwimmer.promptSwimmerName();
         String birthdate = promptSwimmer.promptBirthdate();
-        int phone = promptSwimmer.promptSwimmerPhoneNumber();
+        String phone = promptSwimmer.promptSwimmerPhoneNumber();
         UI.promptString();
         String email = promptSwimmer.promptSwimmerEmail();
 
@@ -61,7 +61,7 @@ Swimmer swimmerToEdit = null;
 for (Swimmer swimmer : fileHandling.getSwimmers()){
 if (swimmer.getName().equals(name)
         && (swimmer.getEmail().equals(email)
-        && (swimmer.getPhone() == phone
+        && (swimmer.getPhone().equals(phone)
         && swimmer.getBirthdate().equals(birthdate)))) {
         swimmerToEdit = swimmer;
 
