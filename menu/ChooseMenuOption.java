@@ -26,10 +26,10 @@ public class ChooseMenuOption {
         }
     }
 
-    // Choose option in Customer's Menu
+    // Choose option in Trainer's Menu
     public void chooseTrainerMenuOption() {
         switch (UI.promptInt()) {
-          //  case 1 ->
+          // case 1 ->
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }
@@ -48,7 +48,7 @@ public class ChooseMenuOption {
         }
     }
 
-    // Choose option in Accountant Menu
+    // Choose option in Accountant's Menu
     public void chooseAccountantMenuOption() {
         switch (UI.promptInt()) {
             case 9 -> SystemMessages.quitSystem();
