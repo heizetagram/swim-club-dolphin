@@ -6,11 +6,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandling {
     private String[] parts;
-    private Swimmer swimmer;
+    private ArrayList<Swimmer> swimmers;
 
     public FileHandling() {
         this.swimmer = new Swimmer("", "", 0, "");
@@ -36,7 +37,7 @@ public class FileHandling {
     // Save swimmer logic
     public void saveSwimmerToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("swimmers.txt"))) {
-            for (Swimmer swimmer : swimmer.getSwimmers()) {
+            for (Swimmer swimmer : swimmers) {
                 writer.write(swimmer.getName()
                         + ", " + swimmer.getBirthdate()
                         + ", " + swimmer.getPhone()
@@ -46,5 +47,8 @@ public class FileHandling {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public ArrayList<Swimmer> getSwimmers() {
+        return swimmers;
     }
 }
