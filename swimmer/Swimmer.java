@@ -3,7 +3,6 @@ package swimmer;
 import java.util.ArrayList;
 
 public class Swimmer {
-    private ArrayList<Swimmer> swimmers;
     private String name;
     private String birthdate;
     private int phone;
@@ -26,9 +25,9 @@ public class Swimmer {
 
 
     // Getters
-    public ArrayList<Swimmer> getSwimmers() {
-        return swimmers;
-    }
+  //  public ArrayList<Swimmer> getSwimmers() {
+    //    return swimmers;
+   // }
 
     public String getName() {
         return name;
@@ -46,11 +45,6 @@ public class Swimmer {
         return email;
     }
 
-
-    // Setters
-    public void setSwimmers(ArrayList<Swimmer> swimmers) {
-        this.swimmers = swimmers;
-    }
 
     public void setName(String name) {
         this.name = name;
