@@ -14,18 +14,20 @@ public class FileHandling {
     private ArrayList<Swimmer> swimmers;
 
     public FileHandling() {
-        this.swimmer = new Swimmer("", "", 0, "");
+
+        this.swimmers = new ArrayList<>();
     }
 
     // Read appointments logic
     public void loadSwimmerFromFile() {
+        Swimmer swimmer = new Swimmer("", "", "", "");
         File file = new File("swimmers.txt"); {
             try (Scanner scanner = new Scanner(file)) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
                     if (parts.length == 4) {
-                        swimmer.getSwimmers().add(new Swimmer(parts[0], parts[1], Integer.parseInt(parts[2]), parts[3]));
+                        swimmers.add(new Swimmer(parts[0], parts[1], parts[2], parts[3]));
                     }
                 }
             } catch (IOException e) {
