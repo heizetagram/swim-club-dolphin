@@ -10,11 +10,24 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class PromptSwimmer {
-    private int age;
 
-    // Constructor
-    public PromptSwimmer() {
-        age = 0;
+    public String promptSwimmersTime(){
+        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer("", "", "", "", null, "");
+        UI.print("Enter swimmers time! example: 00:00:00");
+        String swimTime = UI.promptString();
+        boolean running = true;
+
+        String[] parts = swimTime.split(":");
+
+        while (running) {
+            if (parts[0].length() != 2 || parts[1].length() != 2){
+                SystemMessages.printRedColoredText("Time format must be (XX:XX:XX)");
+                SystemMessages.tryAgain();
+                swimTime = UI.promptString();
+
+            }
+            }
+        return swimTime;
     }
 
     // Prompts user for name
