@@ -1,6 +1,5 @@
 package filehandling;
 
-import menu.ShowMenu;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Discipline;
 import swimmer.PromptSwimmer;
@@ -30,54 +29,51 @@ public class ModifySwimmer {
         competitiveSwimmer = new CompetitiveSwimmer("", "", 0,"", null, "");
     }
 
-    public void addSwimmer(){
+    public void addSwimmer() {
         UI.promptString(); //scanner bug
         String name = promptSwimmer.promptSwimmerName();
         int age = promptSwimmer.promptBirthYearAndCalculateAge();
         int phone = promptSwimmer.promptSwimmerPhoneNumber();
         String email = promptSwimmer.promptSwimmerEmail();
-           }
+    }
 
     public void addCompetitiveSwimmer() {
         UI.promptString(); //scanner bug
-            String discipline = UI.promptString();
-            switch(discipline){
-                case "1" -> competitiveSwimmer.setDiscipline(Discipline.BACK);
-                case "2" -> competitiveSwimmer.setDiscipline(Discipline.BREAST);
-                case "3" -> competitiveSwimmer.setDiscipline(Discipline.CRAWL);
-                case "4" -> competitiveSwimmer.setDiscipline(Discipline.BUTTERFLY);
-                case "5" -> competitiveSwimmer.setDiscipline(Discipline.MEDLEY);
+        String discipline = UI.promptString();
+        switch (discipline) {
+            case "1" -> competitiveSwimmer.setDiscipline(Discipline.BACK);
+            case "2" -> competitiveSwimmer.setDiscipline(Discipline.BREAST);
+            case "3" -> competitiveSwimmer.setDiscipline(Discipline.CRAWL);
+            case "4" -> competitiveSwimmer.setDiscipline(Discipline.BUTTERFLY);
+            case "5" -> competitiveSwimmer.setDiscipline(Discipline.MEDLEY);
+        }
+    }
 
+    public void editSwimmer() {
+        initCurrentSwimmerPrompts();
+        Swimmer swimmerToEdit = null;
+        for (Swimmer swimmer : swimmmer.getSwimmers()) {
+            if (swimmer.getName().equals(name)
+                    && (swimmer.getEmail().equals(email)
+                    && (swimmer.getPhone() == phone
+                    && swimmer.getBirthdate().equals(birthdate)))) {
+                swimmerToEdit = swimmer;
+
+                UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
+
+                initNewSwimmerPrompts();
+
+                SystemMessages.printGreenColoredText("Successfully edited appointment\n");
+
+                setValueOfSwimmersToEdit(swimmerToEdit);
+
+                fileHandling.saveSwimmerToFile();
             }
+            if (swimmerToEdit == null) {
+                SystemMessages.printRedColoredText("No Swimmer found!\n");
+            }
+        }
     }
-
-public void editSwimmer(){
-initCurrentSwimmerPrompts();
-Swimmer swimmerToEdit = null;
-for (Swimmer swimmer : swimmmer.getSwimmers()){
-if (swimmer.getName().equals(name)
-        && (swimmer.getEmail().equals(email)
-        && (swimmer.getPhone() == phone
-        && swimmer.getBirthdate().equals(birthdate)))) {
-        swimmerToEdit = swimmer;
-
-        UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
-
-        initNewSwimmerPrompts();
-
-        SystemMessages.printGreenColoredText("Successfully edited appointment\n");
-
-        setValueOfSwimmersToEdit(swimmerToEdit);
-
-        fileHandling.saveSwimmerToFile();
-    }
-                if (swimmerToEdit == null) {
-                    SystemMessages.printRedColoredText("No Swimmer found!\n");
-    }
-}
-
-
-}
 
     private void initCurrentSwimmerPrompts() {
         UI.promptString(); // Scanner bug
@@ -85,7 +81,6 @@ if (swimmer.getName().equals(name)
         birthdate = promptSwimmer.promptBirthdate();
         phone = promptSwimmer.promptSwimmerPhoneNumber();
         email = promptSwimmer.promptSwimmerEmail();
-
     }
     private void initNewSwimmerPrompts(){
         newName = promptSwimmer.promptSwimmerName();
