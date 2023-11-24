@@ -1,6 +1,5 @@
 package filehandling;
 
-import menu.ShowMenu;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Discipline;
 import swimmer.PromptSwimmer;
@@ -39,8 +38,8 @@ public class ModifySwimmer {
         UI.promptString();
         String email = promptSwimmer.promptSwimmerEmail();
 
-        swimmmer.getSwimmers().add(new Swimmer(name, birthdate, phone, email ));
-        fileHandling.saveSwimmerToFile();
+        fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email));
+       fileHandling.saveSwimmerToFile();
            }
 
     public void addCompetitiveSwimmer() {
@@ -59,7 +58,7 @@ public class ModifySwimmer {
 public void editSwimmer() {
 initCurrentSwimmerPrompts();
 Swimmer swimmerToEdit = null;
-for (Swimmer swimmer : swimmmer.getSwimmers()){
+for (Swimmer swimmer : fileHandling.getSwimmers()){
 if (swimmer.getName().equals(name)
         && (swimmer.getEmail().equals(email)
         && (swimmer.getPhone() == phone
