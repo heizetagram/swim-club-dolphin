@@ -1,39 +1,32 @@
-package master;
+    package master;
 
-import filehandling.FileHandling;
-import filehandling.ModifySwimmer;
-import menu.ChooseMenuOption;
-import menu.ShowMenu;
-import swimmer.Swimmer;
-import system.SystemRunning;
+    import filehandling.FileHandling;
+    import menu.ChooseMenuOption;
+    import menu.ShowMenu;
+    import system.SystemRunning;
 
-public class Master {
-    private FileHandling fileHandling;
-    private ChooseMenuOption chooseMenuOption;
+    public class Master {
+        private FileHandling fileHandling;
+        private ChooseMenuOption chooseMenuOption;
 
-    private void initVars() {
-        fileHandling = new FileHandling();
-        chooseMenuOption = new ChooseMenuOption();
-    }
+        private void initVars() {
+            fileHandling = new FileHandling();
+            fileHandling.loadSwimmerFromFile();
 
-    public static void main(String[] args) {
-        new Master().run();
-    }
+            chooseMenuOption = new ChooseMenuOption();
+            SystemRunning.setRunning(true);
+        }
 
-    private void run() {
-        initVars();
+        public static void main(String[] args) {
+            new Master().run();
+        }
 
-        fileHandling.saveSwimmerToFile();
-        fileHandling.loadSwimmerFromFile();
+        private void run() {
+            initVars();
 
-        ModifySwimmer modifySwimmer = new ModifySwimmer();
-        modifySwimmer.addSwimmer();
-
-        SystemRunning.setRunning(true);
-
-        while (SystemRunning.isRunning()) {
-            ShowMenu.showRoleSelection();
-            chooseMenuOption.chooseRoleSelectionMenuOption();
+            while (SystemRunning.isRunning()) {
+                ShowMenu.showRoleSelection();
+                chooseMenuOption.chooseRoleSelectionMenuOption();
+            }
         }
     }
-}
