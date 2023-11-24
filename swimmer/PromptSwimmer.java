@@ -1,13 +1,11 @@
 package swimmer;
 
 
-import system.SystemRunning;
 import ui.SystemMessages;
 import ui.UI;
 
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+
+import java.util.Scanner;
 
 public class PromptSwimmer {
 
@@ -44,17 +42,11 @@ public class PromptSwimmer {
         return name;
     }
 
-    // Prompts user for birthdate and calculates age
-    public int promptBirthYearAndCalculateAge() {
-        String birthdate = promptBirthdate();
-        return age;
-    }
-
     // Prompts user for birthdate
     public String promptBirthdate() {
+        Swimmer swimmer = new Swimmer("", "", "", "");
         boolean running = true;
 
-        UI.promptString();
         UI.print("Enter birthdate (DD-MM-YYYY): ");
         String userBirthdate = UI.promptString();
 
@@ -66,33 +58,13 @@ public class PromptSwimmer {
                 SystemMessages.tryAgain();
                 userBirthdate = UI.promptString();
             } else {
-                try {
-                    LocalDateTime localDateTimeBirthdate = convertBirthdateToLocalDateTime(parts);
-                    calculateAge(localDateTimeBirthdate);
-                } catch (DateTimeException e) {
-                    SystemMessages.printRedColoredText("Date doesn't exist");
-                }
+                running = swimmer.checkIfDateIsValid(parts);
             }
         }
         return userBirthdate;
     }
 
-    // Converts String birthdate to LocalDateTime
-    private LocalDateTime convertBirthdateToLocalDateTime(String[] parts) {
-        int day = Integer.parseInt(parts[0]);
-        int month = Integer.parseInt(parts[1]);
-        int year = Integer.parseInt(parts[2]);
-
-        return LocalDateTime.of(year, month, day, 0, 0);
-    }
-
-    // Calculates age
-    // Subtracts user-given birthdate from the current date
-    private int calculateAge(LocalDateTime birthdate) {
-        LocalDateTime currentDate = LocalDateTime.now();
-        return (int) ChronoUnit.YEARS.between(birthdate, currentDate); // Typecasts long to int
-    }
-
+    // Prompts user for email
     public String promptSwimmerEmail() {
         String email = "";
         UI.print("Enter swimmer email: ");
@@ -106,19 +78,40 @@ public class PromptSwimmer {
         return email;
     }
 
-    public int promptSwimmerPhoneNumber(){
-        UI.print("Enter swimmer phone number: ");
-        int phone = UI.promptInt();
-        String phoneDigits = Integer.toString(phone);
+    // Prompts user for phone number
+    public String promptSwimmerPhoneNumber(){
+        boolean running = true;
+        Scanner scan = new Scanner(System.in);
+        int phone = 0;
+        String phoneDigits = "";
 
-        // Checks if phone number is 8 digits
-        while (phoneDigits.length() != 8) {
-            SystemMessages.printRedColoredText("Phone number must be 8 digits");
-            SystemMessages.tryAgain();
-            phone = UI.promptInt();
-            phoneDigits = Integer.toString(phone);
+        UI.print("Enter swimmer's phone number: ");
+
+        while (running) {
+            if (scan.hasNextInt()) { // Checks if user-input is an int
+                phone = UI.promptInt();
+                phoneDigits = Integer.toString(phone);
+
+                // Checks if phone number is 8 digits
+                phoneDigits = checkIfPhoneDigitsIs8(phoneDigits, phone);
+                running = false;
+            } else {
+                SystemMessages.printRedColoredText("Phone number must be integer");
+                SystemMessages.tryAgain();
+            }
         }
-        return phone;
+        return phoneDigits;
+        }
+
+        // Checks if phone digits is 8
+        private String checkIfPhoneDigitsIs8(String phoneDigits, int phone) {
+            while (phoneDigits.length() != 8) {
+                SystemMessages.printRedColoredText("Phone number must be 8 digits");
+                SystemMessages.tryAgain();
+                phone = UI.promptInt();
+                phoneDigits = Integer.toString(phone);
+            }
+            return phoneDigits;
         }
     }
 
