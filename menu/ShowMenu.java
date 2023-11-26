@@ -20,9 +20,13 @@ public class ShowMenu {
     }
 
     public static void showAccountantMenu() {
-        UI.println("(1) View all swimmers");
-        UI.println("(2) View swimmer details on a specific date");
-        UI.println("(3) Calculate daily turnover for a specific date ");
+        UI.println("Membership Management:");
+        UI.println("(1) Calculate Membership Fee");
+        UI.println("(2) Apply discount");
+        UI.println("(3) Manage Membership Fee Payments");
+        UI.println("Overview of Members in Outstanding Payments:");
+        UI.println("(4) View Members with Outstanding Payments");
+        UI.println("(5) Register Members with Outstanding Payments");
         UI.println("(9) Quit");
     }
 
