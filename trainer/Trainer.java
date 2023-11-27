@@ -1,4 +1,6 @@
-package swimmer;
+package trainer;
+
+import swimmer.CompetitiveSwimmer;
 
 import java.util.ArrayList;
 
