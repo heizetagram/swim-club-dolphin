@@ -22,11 +22,11 @@ public class Swimmer {
         isJunior = checkIfUnderage(age);
     }
 
+    // Checks if user-given date is valid
     public boolean checkIfDateIsValid(String[] parts) {
         PromptSwimmer promptSwimmer = new PromptSwimmer();
         boolean running = true;
         try {
-            // --calculate age in another method
             LocalDate localDateBirthdate = convertBirthdateToLocalDateTime(parts);
             age = calculateAge(localDateBirthdate);
             running = false;
@@ -54,49 +54,39 @@ public class Swimmer {
         return (int) ChronoUnit.YEARS.between(birthdate, currentDate); // Typecasts long to int
     }
 
-
     // Getters
     public String getName() {
         return name;
     }
-
     public String getBirthdate() {
         return birthdate;
     }
-
     public String getPhone() {
         return phone;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getIsJunior() {
         return isJunior;
     }
-
     public int getAge() {
         return age;
     }
 
-
+    // Setters
     public void setName(String name) {
         this.name = name;
     }
-
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String checkIfUnderage(int age) {
         if (age > 18) {
             isJunior = "SENIOR";
