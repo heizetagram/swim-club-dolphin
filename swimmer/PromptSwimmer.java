@@ -18,11 +18,12 @@ public class PromptSwimmer {
         String[] parts = swimTime.split(":");
 
         while (running) {
-            if (parts[0].length() != 2 || parts[1].length() != 2){
+            if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 2) {
                 SystemMessages.printRedColoredText("Time format must be (XX:XX:XX)");
                 SystemMessages.tryAgain();
                 swimTime = UI.promptString();
-
+            } else {
+                running = false;
             }
             }
         return swimTime;
@@ -74,6 +75,22 @@ public class PromptSwimmer {
             email = UI.promptString();
         }
         return email;
+    }
+
+    // Prompts user for discipline
+    public String addCompetitiveSwimmerDiscipline(CompetitiveSwimmer competitiveSwimmer) {
+        UI.print("Choose discipline:\n1. BACK\n2. BREAST\n3. CRAWL\n4. BUTTERFLY\n5. MEDLEY");
+        String disciplineChoice = UI.promptString();
+        String discipline = "";
+        switch (disciplineChoice) {
+            case "1" -> {discipline = "BACK"; competitiveSwimmer.setDiscipline(Discipline.BACK);}
+            case "2" -> {discipline = "BREAST"; competitiveSwimmer.setDiscipline(Discipline.BREAST);}
+            case "3" -> {discipline = "CRAWL"; competitiveSwimmer.setDiscipline(Discipline.CRAWL);}
+            case "4" -> {discipline = "BUTTERFLY"; competitiveSwimmer.setDiscipline(Discipline.BUTTERFLY);}
+            case "5" -> {discipline = "MEDLEY"; competitiveSwimmer.setDiscipline(Discipline.MEDLEY);}
+            default -> {SystemMessages.printRedColoredText("Invalid discipline choice"); discipline = addCompetitiveSwimmerDiscipline(competitiveSwimmer);}
+        }
+        return discipline;
     }
 
     // Prompts user for phone number
