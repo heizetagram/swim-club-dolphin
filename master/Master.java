@@ -14,6 +14,7 @@
         private void initVars() {
             fileHandling = new FileHandling();
             fileHandling.loadSwimmerFromFile();
+            fileHandling.loadCompetitiveSwimmerFromFile();
 
             chooseMenuOption = new ChooseMenuOption();
             SystemRunning.setRunning(true);
