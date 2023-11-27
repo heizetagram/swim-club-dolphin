@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class FileHandling {
     private String[] parts;
     private ArrayList<Swimmer> swimmers;
+    private ArrayList<CompetitiveSwimmer> competitiveSwimmers;
 
     public FileHandling() {
 
@@ -52,5 +53,28 @@ public class FileHandling {
     }
     public ArrayList<Swimmer> getSwimmers() {
         return swimmers;
+    }
+    public void saveCompetitiveSwimmerToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("competitiveswimmers.txt"))) {
+            ArrayList<CompetitiveSwimmer> allCompetitiveSwimmers = new ArrayList<>(getCompetitiveSwimmers());
+            for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
+                writer.write(competitiveSwimmer.getName()
+                        + ", " + competitiveSwimmer.getBirthdate()
+                        + ", " + competitiveSwimmer.getPhone()
+                        + ", " + competitiveSwimmer.getEmail()
+                        + ", " + competitiveSwimmer.getDiscipline()
+                        + ", " + competitiveSwimmer.getSwimTime());
+                writer.newLine();
+            }
+            this.competitiveSwimmers = allCompetitiveSwimmers;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public ArrayList<Swimmer> getSwimmers() {
+        return swimmers;
+    }
+    public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmers() {
+        return competitiveSwimmers;
     }
 }
