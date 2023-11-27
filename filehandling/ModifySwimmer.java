@@ -44,16 +44,18 @@ public class ModifySwimmer {
 
     public void addCompetitiveSwimmer(){
         UI.promptString(); //scanner bug
-            String discipline = UI.promptString();
-            switch (discipline) {
-                case "1" -> competitiveSwimmer.setDiscipline(Discipline.BACK);
-                case "2" -> competitiveSwimmer.setDiscipline(Discipline.BREAST);
-                case "3" -> competitiveSwimmer.setDiscipline(Discipline.CRAWL);
-                case "4" -> competitiveSwimmer.setDiscipline(Discipline.BUTTERFLY);
-                case "5" -> competitiveSwimmer.setDiscipline(Discipline.MEDLEY);
+        String name = promptSwimmer.promptSwimmerName();
+        String birthdate = promptSwimmer.promptBirthdate();
+        String phone = promptSwimmer.promptSwimmerPhoneNumber();
+        UI.promptString();
+        String email = promptSwimmer.promptSwimmerEmail();
+        String discipline = promptSwimmer.addCompetitiveSwimmerDiscipline(competitiveSwimmer);;
+        String swimTime = promptSwimmer.promptSwimmersTime();
 
-            }
+        fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, birthdate, phone, email, discipline , swimTime));
+        fileHandling.saveCompetitiveSwimmerToFile();
     }
+
 
     public void editSwimmer() {
         initCurrentSwimmerPrompts();
