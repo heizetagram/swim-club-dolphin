@@ -30,7 +30,7 @@ public class ModifySwimmer {
         competitiveSwimmer = new CompetitiveSwimmer("", "", "","", null, "");
     }
 
-    public void addSwimmer(){
+    public void addSwimmer() {
         UI.promptString(); //scanner bug
         String name = promptSwimmer.promptSwimmerName();
         String birthdate = promptSwimmer.promptBirthdate();
@@ -39,10 +39,10 @@ public class ModifySwimmer {
         String email = promptSwimmer.promptSwimmerEmail();
 
         fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email));
-       fileHandling.saveSwimmerToFile();
-           }
+        fileHandling.saveSwimmerToFile();
+    }
 
-    public void addCompetitiveSwimmer() {
+    public void addCompetitiveSwimmer(){
         UI.promptString(); //scanner bug
             String discipline = UI.promptString();
             switch (discipline) {
@@ -55,33 +55,34 @@ public class ModifySwimmer {
             }
     }
 
-public void editSwimmer() {
-initCurrentSwimmerPrompts();
-Swimmer swimmerToEdit = null;
-for (Swimmer swimmer : fileHandling.getSwimmers()){
-if (swimmer.getName().equals(name)
-        && (swimmer.getEmail().equals(email)
-        && (swimmer.getPhone().equals(phone)
-        && swimmer.getBirthdate().equals(birthdate)))) {
-        swimmerToEdit = swimmer;
+    public void editSwimmer() {
+        initCurrentSwimmerPrompts();
+        Swimmer swimmerToEdit = null;
+        for (Swimmer swimmer : fileHandling.getSwimmers()){
+            if (swimmer.getName().equals(name)
+                && (swimmer.getEmail().equals(email)
+                && (swimmer.getPhone().equals(phone)
+                && swimmer.getBirthdate().equals(birthdate)))) {
+                swimmerToEdit = swimmer;
 
-        UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
+                UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
 
-        initNewSwimmerPrompts();
+                initNewSwimmerPrompts();
 
-        SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
+                SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
 
-        setValueOfSwimmersToEdit(swimmerToEdit);
+                setValueOfSwimmersToEdit(swimmerToEdit);
 
-        fileHandling.saveSwimmerToFile();
+                fileHandling.saveSwimmerToFile();
+                fileHandling.saveCompetitiveSwimmerToFile();
+            }
+            if (swimmerToEdit == null) {
+                SystemMessages.printRedColoredText("No Swimmer found!\n");
+        }
     }
-                if (swimmerToEdit == null) {
-                    SystemMessages.printRedColoredText("No Swimmer found!\n");
+
+
     }
-}
-
-
-}
 
     private void initCurrentSwimmerPrompts() {
         UI.promptString(); // Scanner bug
