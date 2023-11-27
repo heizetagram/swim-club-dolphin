@@ -1,7 +1,7 @@
 
 package swimmer;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import ui.SystemMessages;
 import java.time.DateTimeException;
 import java.time.temporal.ChronoUnit;
@@ -27,8 +27,8 @@ public class Swimmer {
         boolean running = true;
         try {
             // --calculate age in another method
-            LocalDateTime localDateTimeBirthdate = convertBirthdateToLocalDateTime(parts);
-            age = calculateAge(localDateTimeBirthdate);
+            LocalDate localDateBirthdate = convertBirthdateToLocalDateTime(parts);
+            age = calculateAge(localDateBirthdate);
             running = false;
         } catch (DateTimeException e) {
             SystemMessages.printRedColoredText("Date doesn't exist");
@@ -39,27 +39,23 @@ public class Swimmer {
     }
 
     // Converts String birthdate to LocalDateTime
-    private LocalDateTime convertBirthdateToLocalDateTime(String[] parts) {
+    private LocalDate convertBirthdateToLocalDateTime(String[] parts) {
         int day = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[2]);
 
-        return LocalDateTime.of(year, month, day, 0, 0);
+        return LocalDate.of(year, month, day);
     }
 
     // Calculates age
     // Subtracts user-given birthdate from the current date
-    private int calculateAge(LocalDateTime birthdate) {
-        LocalDateTime currentDate = LocalDateTime.now();
+    private int calculateAge(LocalDate birthdate) {
+        LocalDate currentDate = LocalDate.now();
         return (int) ChronoUnit.YEARS.between(birthdate, currentDate); // Typecasts long to int
     }
 
 
     // Getters
-  //  public ArrayList<Swimmer> getSwimmers() {
-    //    return swimmers;
-   // }
-
     public String getName() {
         return name;
     }
