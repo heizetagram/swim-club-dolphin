@@ -1,4 +1,4 @@
-package swimmer;
+package accountant;
 
 public class Accountant {
     // membership fee based on the member's age and activity type.
