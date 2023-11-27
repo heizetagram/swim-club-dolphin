@@ -13,7 +13,7 @@ public class CompetitiveSwimmer extends Swimmer {
         this.swimTime = swimTime;
     }
 
-    public Discipline getDiscipline() {
+    public String getDiscipline() {
         return discipline;
     }
 
@@ -26,7 +26,7 @@ public class CompetitiveSwimmer extends Swimmer {
     }
 
     public void setDiscipline(Discipline discipline) {
-        this.discipline = discipline;
+        this.discipline = String.valueOf(discipline);
     }
 
     public void setSwimTime(String swimmingTime) {
