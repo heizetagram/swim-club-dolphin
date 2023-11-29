@@ -1,6 +1,7 @@
 package swimmer;
 
 
+import ui.ConsoleColors;
 import ui.SystemMessages;
 import ui.UI;
 
@@ -45,29 +46,41 @@ public class PromptSwimmer {
 
     // Prompts user for birthdate
     public String promptBirthdate() {
-        Swimmer swimmer = new Swimmer("", "", "", "");
-        boolean running = true;
-
         UI.print("Enter birthdate (DD-MM-YYYY): ");
         String userBirthdate = UI.promptString();
         String[] parts = userBirthdate.split("-");
-        System.out.println(parts.length);
 
-        if (parts.length != 3) {
-            System.out.println("Test2");
-        }
+        userBirthdate = checkIfDateFormatIsCorrect(parts);
+        //userBirthdate = checkIfDateFormatIsCorrect(parts);
+        return userBirthdate;
+    }
 
-        while (running ) {
-            if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 4) {
-                SystemMessages.printRedColoredText("Date format must be (DD-MM-YYYY)");
-                SystemMessages.tryAgain();
+    String checkIfDateFormatIsCorrect(String[] parts) {
+        Swimmer swimmer = new Swimmer("", "", "", "");
+        boolean running = true;
+        String userBirthdate = "";
+
+        while (running) {
+            try {
+                if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 4) {
+                    printDateFormatException();
+                    userBirthdate = UI.promptString();
+                    parts = userBirthdate.split("-");
+                } else {
+                    running = swimmer.checkIfDateIsValid(parts);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                printDateFormatException();
                 userBirthdate = UI.promptString();
                 parts = userBirthdate.split("-");
-            } else {
-                running = swimmer.checkIfDateIsValid(parts);
             }
         }
         return userBirthdate;
+    }
+
+    private void printDateFormatException() {
+        SystemMessages.printRedColoredText("Date format must be (DD-MM-YYYY)");
+        SystemMessages.tryAgain();
     }
 
     // Prompts user for email
