@@ -33,9 +33,17 @@ public class ShowMenu {
         UI.println("(1) Add swimmer");
         UI.println("(2) Delete swimmer");
         UI.println("(3) Edit swimmer");
-        UI.println("(4) View swimmers on specific date");
+        UI.println("(4) View swimmers");
         UI.println("(5) Add competitive swimmer");
         UI.println("(6) Add Event/position");
         UI.println("(9) Quit");
+    }
+
+    public static void showDisciplineMenu() {
+        UI.println("(1) BACK");
+        UI.println("(2) BREAST");
+        UI.println("(3) CRAWL");
+        UI.println("(4) BUTTERFLY");
+        UI.println("(5) MEDLEY");
     }
 }
