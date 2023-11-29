@@ -1,7 +1,6 @@
 package filehandling;
 
 import swimmer.CompetitiveSwimmer;
-import swimmer.Discipline;
 import swimmer.PromptSwimmer;
 import ui.ConsoleColors;
 import ui.SystemMessages;
@@ -11,7 +10,6 @@ import swimmer.Swimmer;
 public class ModifySwimmer {
     private FileHandling fileHandling;
     private PromptSwimmer promptSwimmer;
-    private Swimmer swimmmer;
     private CompetitiveSwimmer competitiveSwimmer;
     private String name;
     private String birthdate;
@@ -24,7 +22,6 @@ public class ModifySwimmer {
 
 
     public ModifySwimmer() {
-      //  swimmmer = new Swimmer("", "", "", "");
         fileHandling = new FileHandling();
         promptSwimmer = new PromptSwimmer();
         competitiveSwimmer = new CompetitiveSwimmer("", "", "","", null, "");
@@ -40,6 +37,7 @@ public class ModifySwimmer {
 
         fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email));
         fileHandling.saveSwimmerToFile();
+        SystemMessages.printGreenColoredText("Successfully added a swimmer!");
     }
 
     public void addCompetitiveSwimmer(){
@@ -65,25 +63,23 @@ public class ModifySwimmer {
                 && (swimmer.getEmail().equals(email)
                 && (swimmer.getPhone().equals(phone)
                 && swimmer.getBirthdate().equals(birthdate)))) {
-                swimmerToEdit = swimmer;
+                    swimmerToEdit = swimmer;
 
-                UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
+                    UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
 
-                initNewSwimmerPrompts();
+                    initNewSwimmerPrompts();
 
-                SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
+                    SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
 
-                setValueOfSwimmersToEdit(swimmerToEdit);
+                    setValueOfSwimmersToEdit(swimmerToEdit);
 
-                fileHandling.saveSwimmerToFile();
-                fileHandling.saveCompetitiveSwimmerToFile();
-            }
+                    fileHandling.saveSwimmerToFile();
+                    fileHandling.saveCompetitiveSwimmerToFile();
+                }
             if (swimmerToEdit == null) {
                 SystemMessages.printRedColoredText("No Swimmer found!\n");
+            }
         }
-    }
-
-
     }
 
     private void initCurrentSwimmerPrompts() {
