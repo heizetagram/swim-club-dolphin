@@ -2,23 +2,22 @@ package trainer;
 
 import filehandling.FileHandling;
 import swimmer.CompetitiveSwimmer;
+import ui.ConsoleColors;
 import ui.UI;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 public class SortSwimmers {
-    private ArrayList<CompetitiveSwimmer> competitiveSwimmers;
+    private FileHandling fileHandling;
 
-    public SortSwimmers() {
-        FileHandling fileHandling = new FileHandling();
-        competitiveSwimmers = new ArrayList<>(fileHandling.getCompetitiveSwimmers());
+    public SortSwimmers(FileHandling fileHandling) {
+        this.fileHandling = fileHandling;
     }
 
     // Sort competitive swimmer by Discipline and SwimTime
     public void compareDisciplineAndSwimTime() {
         Comparator<CompetitiveSwimmer> byDisciplineAndSwimTime = Comparator.comparing(CompetitiveSwimmer::getDiscipline).thenComparing(CompetitiveSwimmer::getSwimTime);
-        competitiveSwimmers.sort(byDisciplineAndSwimTime);
+        fileHandling.getCompetitiveSwimmers().sort(byDisciplineAndSwimTime);
     }
 
     // Print top 5 competitive swimmers for each Discipline
@@ -26,7 +25,7 @@ public class SortSwimmers {
         String currentDiscipline = "";
         int counter = 0;
 
-        for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
+        for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
             String discipline = competitiveSwimmer.getDiscipline();
 
             if (!discipline.equals(currentDiscipline)) {
@@ -35,14 +34,11 @@ public class SortSwimmers {
             }
 
             if (counter < 5) {
-                UI.println(competitiveSwimmer.getDiscipline() + ": " + competitiveSwimmer.getName() + ", " + competitiveSwimmer.getSwimTime());
+                UI.println(ConsoleColors.BLUE + competitiveSwimmer.getDiscipline() + ConsoleColors.RESET + ": " + competitiveSwimmer.getName() + " - " + ConsoleColors.YELLOW + competitiveSwimmer.getSwimTime() + ConsoleColors.RESET);
                 counter++;
             }
         }
     }
-
-    // Getter
-    public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmers() {
-        return competitiveSwimmers;
-    }
 }
+
+
