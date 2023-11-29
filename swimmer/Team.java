@@ -21,6 +21,5 @@ public class Team {
         } else
             getJuniorTeam().add(swimmer);
     }
-
      */
 }
