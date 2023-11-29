@@ -1,1 +1,6 @@
-hej, 12-12-1000, 12121212, 1212
+Bjorn, 12-12-2000, 0, 12121212, david@gmail.com, JUNIOR
+Bjorg, 10-10-2003, 0, 12837462, test@gai.com, JUNIOR
+Cim, 01-01-2010, 0, 83927463, cim@gmail.com, JUNIOR
+Dani, 01-02-1940, 0, 84729384, danilu1999@gmail.com, JUNIOR
+hej, 12-12-2000, 0, 12312312, hejkrasdf@gam.com, JUNIOR
+Lchaim, 10-10-2006, 0, 91847263, lchaim@yahoo.com, JUNIOR
