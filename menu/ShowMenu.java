@@ -35,6 +35,7 @@ public class ShowMenu {
         UI.println("(3) Edit swimmer");
         UI.println("(4) View swimmers on specific date");
         UI.println("(5) Add competitive swimmer");
+        UI.println("(6) Add Event/position");
         UI.println("(9) Quit");
     }
 }
