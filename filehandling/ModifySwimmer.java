@@ -35,7 +35,6 @@ public class ModifySwimmer {
         String name = promptSwimmer.promptSwimmerName();
         String birthdate = promptSwimmer.promptBirthdate();
         String phone = promptSwimmer.promptSwimmerPhoneNumber();
-        UI.promptString();
         String email = promptSwimmer.promptSwimmerEmail();
 
         fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email));
