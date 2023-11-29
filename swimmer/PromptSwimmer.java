@@ -102,25 +102,25 @@ public class PromptSwimmer {
         UI.print("Enter swimmer's phone number: ");
         while (running) {
             if (scan.hasNextInt()) {
-                scan.nextLine();
-                phoneDigits = Integer.toString(UI.promptInt());
+                phoneDigits = Integer.toString(scan.nextInt()); // UI.promptInt() didn't work but scan.nextInt() did
+                scan.nextLine(); // Clears buffer
                 phoneDigits = checkIfPhoneDigitsIs8(phoneDigits);
-                System.out.println("test");
                 running = false;
             } else {
                 SystemMessages.printRedColoredText("Phone number must be integer");
                 SystemMessages.tryAgain();
-                scan.nextLine();
+                scan.nextLine(); // Clears buffer
             }
         }
         return phoneDigits;
     }
     // Checks if phone digits is 8
     private String checkIfPhoneDigitsIs8(String phoneDigits) {
+        Scanner scan = new Scanner(System.in);
         while (phoneDigits.length() != 8) {
             SystemMessages.printRedColoredText("Phone number must be 8 digits");
             SystemMessages.tryAgain();
-            phoneDigits = Integer.toString(UI.promptInt());
+            phoneDigits = Integer.toString(scan.nextInt()); // Again, does not work with UI.promptInt()
         }
         return phoneDigits;
     }
