@@ -34,7 +34,7 @@ public class SortSwimmers {
             }
 
             if (counter < 5) {
-                UI.println(ConsoleColors.BLUE + competitiveSwimmer.getDiscipline() + ConsoleColors.RESET + ": " + competitiveSwimmer.getName() + " - " + ConsoleColors.YELLOW + competitiveSwimmer.getSwimTime() + ConsoleColors.RESET);
+                UI.printf("%s%-6s%s: %-15s %s%s%s\n", ConsoleColors.BLUE, competitiveSwimmer.getDiscipline(), ConsoleColors.RESET, competitiveSwimmer.getName(), ConsoleColors.YELLOW, competitiveSwimmer.getSwimTime(), ConsoleColors.RESET);
                 counter++;
             }
         }
