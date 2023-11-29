@@ -2,9 +2,9 @@
 package swimmer;
 
 import java.time.LocalDate;
+
 import ui.SystemMessages;
 import java.time.DateTimeException;
-import java.time.temporal.ChronoUnit;
 
 public class Swimmer {
     private String name;
@@ -12,23 +12,23 @@ public class Swimmer {
     private String phone;
     private String email;
     private int age;
-    private String isJunior;
+    private String ageGroup;
 
     public Swimmer(String name, String birthdate, String phone, String email) {
         this.name = name;
         this.birthdate = birthdate;
         this.phone = phone;
         this.email = email;
-        isJunior = checkIfUnderage(age);
+        //setAgeFromBirthDate();
+        ageGroup = calculateAgeGroup(age);
     }
 
     // Checks if user-given date is valid
-    public boolean checkIfDateIsValid(String[] parts) {
+    boolean checkIfDateIsValid(String[] parts) {
         PromptSwimmer promptSwimmer = new PromptSwimmer();
         boolean running = true;
         try {
-            LocalDate localDateBirthdate = convertBirthdateToLocalDateTime(parts);
-            age = calculateAge(localDateBirthdate);
+            convertBirthdateToLocalDate(parts);
             running = false;
         } catch (DateTimeException e) {
             SystemMessages.printRedColoredText("Date doesn't exist");
@@ -39,7 +39,7 @@ public class Swimmer {
     }
 
     // Converts String birthdate to LocalDateTime
-    private LocalDate convertBirthdateToLocalDateTime(String[] parts) {
+    LocalDate convertBirthdateToLocalDate(String[] parts) {
         int day = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[2]);
@@ -47,11 +47,16 @@ public class Swimmer {
         return LocalDate.of(year, month, day);
     }
 
-    // Calculates age
-    // Subtracts user-given birthdate from the current date
-    private int calculateAge(LocalDate birthdate) {
-        LocalDate currentDate = LocalDate.now();
-        return (int) ChronoUnit.YEARS.between(birthdate, currentDate); // Typecasts long to int
+    // Calculates age group based on age
+    public String calculateAgeGroup(int age) {
+        if (age < 18) {
+            ageGroup = "JUNIOR";
+        } else if (age > 18 && age < 60) {
+            ageGroup = "SENIOR";
+        } else {
+            ageGroup = "ELDERLY";
+        }
+        return ageGroup;
     }
 
     // Getters
@@ -67,8 +72,8 @@ public class Swimmer {
     public String getEmail() {
         return email;
     }
-    public String getIsJunior() {
-        return isJunior;
+    public String getAgeGroup() {
+        return ageGroup;
     }
     public int getAge() {
         return age;
@@ -87,12 +92,7 @@ public class Swimmer {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String checkIfUnderage(int age) {
-        if (age > 18) {
-            isJunior = "SENIOR";
-        } else {
-            isJunior = "JUNIOR";
-        }
-        return isJunior;
+    public void setAge(int age) {
+        this.age = age;
     }
 }
