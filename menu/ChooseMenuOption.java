@@ -42,6 +42,7 @@ public class ChooseMenuOption {
             case 3 -> {modifySwimmer.editSwimmer(); SystemMessages.pressEnterToContinue();}
             //case 4 -> {modifySwimmer.viewSwimmers(); SystemMessages.pressEnterToContinue();}
             case 5 -> {modifySwimmer.addCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
+            case 6 -> {modifySwimmer.addEventAndPosition(); SystemMessages.pressEnterToContinue();}
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }
