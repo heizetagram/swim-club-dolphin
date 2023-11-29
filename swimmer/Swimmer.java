@@ -32,7 +32,7 @@ public class Swimmer {
         } catch (DateTimeException e) {
             SystemMessages.printRedColoredText("Date doesn't exist");
             SystemMessages.tryAgain();
-            promptSwimmer.promptBirthdate();
+            promptSwimmer.promptBirthdate(); // fejl
         }
         return running;
     }
