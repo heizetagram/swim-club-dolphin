@@ -1,11 +1,6 @@
 
 package swimmer;
 
-import java.time.LocalDate;
-
-import ui.SystemMessages;
-import java.time.DateTimeException;
-
 public class Swimmer {
     private String name;
     private String birthdate;
@@ -19,43 +14,6 @@ public class Swimmer {
         this.birthdate = birthdate;
         this.phone = phone;
         this.email = email;
-        ageGroup = calculateAgeGroup(age);
-    }
-
-    // Checks if user-given date is valid
-    boolean checkIfDateIsValid(String[] parts) {
-        PromptSwimmer promptSwimmer = new PromptSwimmer();
-        boolean running = true;
-        try {
-            convertBirthdateToLocalDate(parts);
-            running = false;
-        } catch (DateTimeException e) {
-            SystemMessages.printRedColoredText("Date doesn't exist");
-            SystemMessages.tryAgain();
-            promptSwimmer.promptBirthdate(); // fejl
-        }
-        return running;
-    }
-
-    // Converts String birthdate to LocalDateTime
-    LocalDate convertBirthdateToLocalDate(String[] parts) {
-        int day = Integer.parseInt(parts[0]);
-        int month = Integer.parseInt(parts[1]);
-        int year = Integer.parseInt(parts[2]);
-
-        return LocalDate.of(year, month, day);
-    }
-
-    // Calculates age group based on age
-    public String calculateAgeGroup(int age) {
-        if (age < 18) {
-            ageGroup = "JUNIOR";
-        } else if (age > 18 && age < 60) {
-            ageGroup = "SENIOR";
-        } else {
-            ageGroup = "ELDERLY";
-        }
-        return ageGroup;
     }
 
     // Getters
@@ -71,11 +29,11 @@ public class Swimmer {
     public String getEmail() {
         return email;
     }
-    public String getAgeGroup() {
-        return ageGroup;
-    }
     public int getAge() {
         return age;
+    }
+    public String getAgeGroup() {
+        return ageGroup;
     }
 
     // Setters
@@ -93,5 +51,8 @@ public class Swimmer {
     }
     public void setAge(int age) {
         this.age = age;
+    }
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
     }
 }
