@@ -33,7 +33,6 @@
             calculateCompetitiveSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
 
             SortSwimmers sortSwimmers = new SortSwimmers(fileHandling);
-
             sortSwimmers.compareDisciplineAndSwimTime();
             sortSwimmers.printTop5CompetitiveSwimmers();
 
