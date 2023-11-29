@@ -65,8 +65,8 @@ public class FileHandling {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
-                    if (parts.length == 6) {
-                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]));
+                    if (parts.length == 8) {
+                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[5], parts[6]));
                     }
                 }
             } catch (IOException e) {
@@ -82,10 +82,12 @@ public class FileHandling {
             for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
                 writer.write(competitiveSwimmer.getName()
                         + ", " + competitiveSwimmer.getBirthdate()
+                        + ", " + competitiveSwimmer.getAge()
                         + ", " + competitiveSwimmer.getPhone()
                         + ", " + competitiveSwimmer.getEmail()
                         + ", " + competitiveSwimmer.getDiscipline()
-                        + ", " + competitiveSwimmer.getSwimTime());
+                        + ", " + competitiveSwimmer.getSwimTime()
+                        + ", " + competitiveSwimmer.getAgeGroup());
                 writer.newLine();
             }
             this.competitiveSwimmers = allCompetitiveSwimmers;

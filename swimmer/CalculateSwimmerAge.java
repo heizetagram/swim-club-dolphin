@@ -19,10 +19,22 @@ public class CalculateSwimmerAge {
         fileHandling.saveSwimmerToFile();
     }
 
+
     // Calculates age
     // Subtracts user-given birthdate from the current date
     int calculateAge(LocalDate birthdate) {
         Period yearDifference = Period.between(birthdate, LocalDate.now());
         return yearDifference.getYears();
+    }
+
+    public void setCompetitiveSwimmersAge(FileHandling fileHandling) {
+        for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
+            String[] parts = competitiveSwimmer.getBirthdate().split("-");
+            LocalDate localDateBirthdate = competitiveSwimmer.convertBirthdateToLocalDate(parts);
+            int age = calculateAge(localDateBirthdate);
+            competitiveSwimmer.setAge(age);
+            competitiveSwimmer.calculateAgeGroup(age);
+        }
+        fileHandling.saveCompetitiveSwimmerToFile();
     }
 }

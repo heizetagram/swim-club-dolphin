@@ -1,5 +1,6 @@
 package filehandling;
 
+import swimmer.CalculateSwimmerAge;
 import swimmer.CompetitiveSwimmer;
 import swimmer.PromptSwimmer;
 import ui.ConsoleColors;
@@ -11,6 +12,7 @@ public class ModifySwimmer {
     private FileHandling fileHandling;
     private PromptSwimmer promptSwimmer;
     private CompetitiveSwimmer competitiveSwimmer;
+    private CalculateSwimmerAge calculateSwimmerAge;
     private String name;
     private String birthdate;
     private String email;
@@ -25,6 +27,7 @@ public class ModifySwimmer {
         fileHandling = new FileHandling();
         promptSwimmer = new PromptSwimmer();
         competitiveSwimmer = new CompetitiveSwimmer("", "", "","", null, "");
+        calculateSwimmerAge = new CalculateSwimmerAge();
     }
 
     public void addSwimmer() {
@@ -36,6 +39,7 @@ public class ModifySwimmer {
         String email = promptSwimmer.promptSwimmerEmail();
 
         fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email));
+        calculateSwimmerAge.setCompetitiveSwimmersAge(fileHandling.getc);
         fileHandling.saveSwimmerToFile();
         SystemMessages.printGreenColoredText("Successfully added a swimmer!");
     }
