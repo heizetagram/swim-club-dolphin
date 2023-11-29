@@ -16,23 +16,21 @@ public class FileHandling {
     private ArrayList<CompetitiveSwimmer> competitiveSwimmers;
 
     public FileHandling() {
-
-        this.swimmers = new ArrayList<>();
-        this.competitiveSwimmers = new ArrayList<>();
+        swimmers = new ArrayList<>();
+        competitiveSwimmers = new ArrayList<>();
         loadSwimmerFromFile();
         loadCompetitiveSwimmerFromFile();
     }
 
-    // Read appointments logic
+    // Load swimmers logic
     public void loadSwimmerFromFile() {
-        Swimmer swimmer = new Swimmer("", "", "", "");
         File file = new File("swimmers.txt"); {
             try (Scanner scanner = new Scanner(file)) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
-                    if (parts.length == 4) {
-                        swimmers.add(new Swimmer(parts[0], parts[1], parts[2], parts[3]));
+                    if (parts.length == 6) {
+                        swimmers.add(new Swimmer(parts[0], parts[1], parts[3], parts[4]));
                     }
                 }
             } catch (IOException e) {
@@ -48,8 +46,10 @@ public class FileHandling {
             for (Swimmer swimmer : swimmers) {
                 writer.write(swimmer.getName()
                         + ", " + swimmer.getBirthdate()
+                        + ", " + swimmer.getAge()
                         + ", " + swimmer.getPhone()
-                        + ", " + swimmer.getEmail());
+                        + ", " + swimmer.getEmail()
+                        + ", " + swimmer.getAgeGroup());
                 writer.newLine();
             }
             this.swimmers = allSwimmers;
@@ -58,8 +58,8 @@ public class FileHandling {
         }
     }
 
+    // Load competitive swimmers
     public void loadCompetitiveSwimmerFromFile() {
-        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer("", "", "", "", null, "");
         File file = new File("competitiveswimmers.txt"); {
             try (Scanner scanner = new Scanner(file)) {
                 while (scanner.hasNextLine()) {
@@ -74,6 +74,8 @@ public class FileHandling {
             }
         }
     }
+
+    // Save competitive swimmers
     public void saveCompetitiveSwimmerToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("competitiveswimmers.txt"))) {
             ArrayList<CompetitiveSwimmer> allCompetitiveSwimmers = new ArrayList<>(getCompetitiveSwimmers());
@@ -91,6 +93,8 @@ public class FileHandling {
             e.printStackTrace();
         }
     }
+
+    // Getters
     public ArrayList<Swimmer> getSwimmers() {
         return swimmers;
     }
