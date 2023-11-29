@@ -6,12 +6,31 @@ public class CompetitiveSwimmer extends Swimmer {
     private String discipline;
     private String swimTime;
     private Trainer trainer;
+    private String event;
+    private String position;
 
-    public CompetitiveSwimmer(String name, String birthday, String phone, String email, String discipline, String swimTime) {
+
+    public CompetitiveSwimmer(String name, String birthday, String phone, String email, String discipline, String swimTime, String event, String position) {
         super(name, birthday, phone, email);
         this.discipline = discipline;
         this.swimTime = swimTime;
+        this.position = position;
+        this.event = event;
     }
+
+    public String getPosition(){
+        return position;
+    }
+    public void setPosition(String position){
+        this.position = position;
+    }
+
+   public String getEvent(){
+        return event;
+   }
+   public void setEvent(String event){
+        this.event = event;
+   }
 
     public String getDiscipline() {
         return discipline;
