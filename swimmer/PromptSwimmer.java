@@ -1,10 +1,10 @@
 package swimmer;
 
-
-import ui.ConsoleColors;
+import menu.ShowMenu;
 import ui.SystemMessages;
 import ui.UI;
-
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class PromptSwimmer {
@@ -30,6 +30,7 @@ public class PromptSwimmer {
         return swimTime;
     }
 
+    // Prompt user for swimmer's position
     public String promptSwimmersPosition(){
         String position = "";
         UI.print("Enter swimmers position");
@@ -41,6 +42,7 @@ public class PromptSwimmer {
         return position;
     }
 
+    // Prompt user for swimmer's event
     public String promptSwimmersEvent(){
         String event = "";
         UI.print("Enter name of the event");
@@ -52,8 +54,6 @@ public class PromptSwimmer {
         }
         return event;
     }
-
-
 
     // Prompts user for name
     public String promptSwimmerName() {
@@ -74,17 +74,13 @@ public class PromptSwimmer {
         UI.print("Enter birthdate (DD-MM-YYYY): ");
         String userBirthdate = UI.promptString();
         String[] parts = userBirthdate.split("-");
-
-        userBirthdate = checkIfDateFormatIsCorrect(parts);
-        //userBirthdate = checkIfDateFormatIsCorrect(parts);
+        userBirthdate = checkIfDateFormatIsCorrect(parts, userBirthdate);
         return userBirthdate;
     }
 
-    String checkIfDateFormatIsCorrect(String[] parts) {
-        Swimmer swimmer = new Swimmer("", "", "", "");
+    // Check if date format is correct
+    public String checkIfDateFormatIsCorrect(String[] parts, String userBirthdate) {
         boolean running = true;
-        String userBirthdate = "";
-
         while (running) {
             try {
                 if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 4) {
@@ -92,7 +88,8 @@ public class PromptSwimmer {
                     userBirthdate = UI.promptString();
                     parts = userBirthdate.split("-");
                 } else {
-                    running = swimmer.checkIfDateIsValid(parts);
+                    userBirthdate = checkIfDateIsValid(parts, userBirthdate);
+                    running = false;
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 printDateFormatException();
@@ -103,6 +100,26 @@ public class PromptSwimmer {
         return userBirthdate;
     }
 
+    // Checks if user-given date is valid
+    private String checkIfDateIsValid(String[] parts, String userBirthdate) {
+        CalculateSwimmerAge calculateSwimmerAge = new CalculateSwimmerAge();
+        boolean running = true;
+        while (running) {
+            try {
+                LocalDate birthdateLocalDate = calculateSwimmerAge.convertBirthdateToLocalDate(parts);
+                userBirthdate = calculateSwimmerAge.checkIfDateIsInTheFuture(birthdateLocalDate, userBirthdate);
+                running = false;
+            } catch (DateTimeException e) {
+                SystemMessages.printRedColoredText("Date doesn't exist");
+                SystemMessages.tryAgain();
+                userBirthdate = UI.promptString();
+                parts = userBirthdate.split("-");
+            }
+        }
+        return userBirthdate;
+    }
+
+    // Prints date format exception
     private void printDateFormatException() {
         SystemMessages.printRedColoredText("Date format must be (DD-MM-YYYY)");
         SystemMessages.tryAgain();
@@ -114,7 +131,7 @@ public class PromptSwimmer {
         String email = UI.promptString();
 
         while (email.isEmpty() || !email.contains("@") || !email.contains(".")) {
-            SystemMessages.printRedColoredText("Invalid email. Please enter a valid email adresse.");
+            SystemMessages.printRedColoredText("Invalid email. Please enter a valid email address");
             email = UI.promptString();
         }
         return email;
@@ -122,7 +139,8 @@ public class PromptSwimmer {
 
     // Prompts user for discipline
     public String addCompetitiveSwimmerDiscipline(CompetitiveSwimmer competitiveSwimmer) {
-        UI.print("Choose discipline:\n1. BACK\n2. BREAST\n3. CRAWL\n4. BUTTERFLY\n5. MEDLEY");
+        UI.println("Choose discipline:");
+        ShowMenu.showDisciplineMenu();
         String disciplineChoice = UI.promptString();
         String discipline = "";
         switch (disciplineChoice) {
