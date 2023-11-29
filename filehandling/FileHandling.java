@@ -66,7 +66,7 @@ public class FileHandling {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
                     if (parts.length == 10) {
-                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8]));
+                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[5], parts[6], parts[8], parts[9]));
                     }
                 }
             } catch (IOException e) {
@@ -87,7 +87,9 @@ public class FileHandling {
                         + ", " + competitiveSwimmer.getEmail()
                         + ", " + competitiveSwimmer.getDiscipline()
                         + ", " + competitiveSwimmer.getSwimTime()
-                        + ", " + competitiveSwimmer.getAgeGroup());
+                        + ", " + competitiveSwimmer.getAgeGroup()
+                        + ", " + competitiveSwimmer.getEvent()
+                        + ", " + competitiveSwimmer.getPosition());
                 writer.newLine();
             }
             this.competitiveSwimmers = allCompetitiveSwimmers;
