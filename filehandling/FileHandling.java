@@ -65,8 +65,8 @@ public class FileHandling {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
-                    if (parts.length == 8) {
-                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[5], parts[6]));
+                    if (parts.length == 10) {
+                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8]));
                     }
                 }
             } catch (IOException e) {
@@ -91,6 +91,28 @@ public class FileHandling {
                 writer.newLine();
             }
             this.competitiveSwimmers = allCompetitiveSwimmers;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addEventAndPositionToCompetitiveSwimmers (String event, String position){
+        for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
+            competitiveSwimmer.setEvent(event);
+            competitiveSwimmer.setPosition(position);
+
+        }
+        saveCompetitiveSwimmerToFile(); // Save the changes to the main competitive swimmers file
+        saveCompetitionResultsToFile(); // save the changes to the competition results' file
+    }
+    public void saveCompetitionResultsToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("competitionresults.txt"))) {
+            for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
+                writer.write(competitiveSwimmer.getName()
+                        + ", " + competitiveSwimmer.getEvent()
+                        + ", " + competitiveSwimmer.getPosition()
+                        + ", " + competitiveSwimmer.getSwimTime());
+                writer.newLine();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
