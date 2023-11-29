@@ -11,7 +11,7 @@ public class PromptSwimmer {
 
     // Prompts user for swim time
     public String promptSwimmersTime() {
-        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer("", "", "", "", null, "");
+        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer("", "", "", "", null, "", "", "");
         UI.print("Enter swimmers time! example: 00:00:00");
         String swimTime = UI.promptString();
         boolean running = true;
@@ -29,6 +29,31 @@ public class PromptSwimmer {
         }
         return swimTime;
     }
+
+    public String promptSwimmersPosition(){
+        String position = "";
+        UI.print("Enter swimmers position");
+        while (position.isEmpty()) {
+            position = UI.promptString();
+            if(position.isEmpty())
+                SystemMessages.printGreenColoredText("Swimmer must have obtained a ranking");
+        }
+        return position;
+    }
+
+    public String promptSwimmersEvent(){
+        String event = "";
+        UI.print("Enter name of the event");
+        while (event.isEmpty()){
+            event = UI.promptString();
+            if(event.isEmpty()) {
+                SystemMessages.printRedColoredText("Event must have a name");
+            }
+        }
+        return event;
+    }
+
+
 
     // Prompts user for name
     public String promptSwimmerName() {
