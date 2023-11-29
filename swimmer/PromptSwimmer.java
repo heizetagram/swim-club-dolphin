@@ -102,6 +102,7 @@ public class PromptSwimmer {
         UI.print("Enter swimmer's phone number: ");
         while (running) {
             if (scan.hasNextInt()) {
+                scan.nextLine();
                 phoneDigits = Integer.toString(UI.promptInt());
                 phoneDigits = checkIfPhoneDigitsIs8(phoneDigits);
                 System.out.println("test");

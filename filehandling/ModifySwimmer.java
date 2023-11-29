@@ -39,7 +39,7 @@ public class ModifySwimmer {
         String email = promptSwimmer.promptSwimmerEmail();
 
         fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email));
-        calculateSwimmerAge.setCompetitiveSwimmersAge(fileHandling.getc);
+        calculateSwimmerAge.setSwimmersAge(fileHandling);
         fileHandling.saveSwimmerToFile();
         SystemMessages.printGreenColoredText("Successfully added a swimmer!");
     }
