@@ -50,14 +50,19 @@ public class PromptSwimmer {
 
         UI.print("Enter birthdate (DD-MM-YYYY): ");
         String userBirthdate = UI.promptString();
-
         String[] parts = userBirthdate.split("-");
+        System.out.println(parts.length);
+
+        if (parts.length != 3) {
+            System.out.println("Test2");
+        }
 
         while (running ) {
             if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 4) {
                 SystemMessages.printRedColoredText("Date format must be (DD-MM-YYYY)");
                 SystemMessages.tryAgain();
                 userBirthdate = UI.promptString();
+                parts = userBirthdate.split("-");
             } else {
                 running = swimmer.checkIfDateIsValid(parts);
             }
