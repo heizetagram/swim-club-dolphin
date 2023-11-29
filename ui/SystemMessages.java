@@ -6,12 +6,6 @@ import system.SystemRunning;
 import java.util.Scanner;
 
 public class SystemMessages {
-    private SystemRunning systemRunning;
-
-    // Constructor
-    public SystemMessages() {
-        systemRunning = new SystemRunning();
-    }
 
     // Prints swimmer information
     public static void printSwimmer(Swimmer swimmer) {
