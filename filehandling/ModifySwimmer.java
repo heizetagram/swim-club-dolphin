@@ -18,6 +18,8 @@ public class ModifySwimmer {
     private String email;
     private String phone;
     private String newName;
+    private String event;
+    private int position;
     private String newBirthdate;
     private String newPhone;
     private String newEmail;
@@ -26,7 +28,7 @@ public class ModifySwimmer {
     public ModifySwimmer() {
         fileHandling = new FileHandling();
         promptSwimmer = new PromptSwimmer();
-        competitiveSwimmer = new CompetitiveSwimmer("", "", "","", null, "");
+        competitiveSwimmer = new CompetitiveSwimmer("", "", "","", null, "", "", "");
         calculateSwimmerAge = new CalculateSwimmerAge();
     }
 
@@ -52,9 +54,23 @@ public class ModifySwimmer {
         String email = promptSwimmer.promptSwimmerEmail();
         String discipline = promptSwimmer.addCompetitiveSwimmerDiscipline(competitiveSwimmer);;
         String swimTime = promptSwimmer.promptSwimmersTime();
+        String position = promptSwimmer.promptSwimmersPosition();
+        String event = promptSwimmer.promptSwimmersEvent();
 
-        fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, birthdate, phone, email, discipline , swimTime));
+
+        fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, birthdate, phone, email, discipline , swimTime, event, position));
         fileHandling.saveCompetitiveSwimmerToFile();
+    }
+    public void addEventAndPosition(){
+        UI.print("Enter event: ");
+        String event = UI.promptString();
+        UI.print("Enter position: ");
+        String position = UI.promptString();
+
+        fileHandling.addEventAndPositionToCompetitiveSwimmers(event, position);
+        fileHandling.saveCompetitionResultsToFile();
+
+        SystemMessages.printGreenColoredText("Event and Position added to Competitive Swimmers!");
     }
 
 
