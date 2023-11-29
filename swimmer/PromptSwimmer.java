@@ -4,12 +4,12 @@ package swimmer;
 import ui.SystemMessages;
 import ui.UI;
 
-
 import java.util.Scanner;
 
 public class PromptSwimmer {
 
-    public String promptSwimmersTime(){
+    // Prompts user for swim time
+    public String promptSwimmersTime() {
         CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer("", "", "", "", null, "");
         UI.print("Enter swimmers time! example: 00:00:00");
         String swimTime = UI.promptString();
@@ -25,7 +25,7 @@ public class PromptSwimmer {
             } else {
                 running = false;
             }
-            }
+        }
         return swimTime;
     }
 
@@ -53,7 +53,7 @@ public class PromptSwimmer {
 
         String[] parts = userBirthdate.split("-");
 
-        while (running) {
+        while (running ) {
             if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 4) {
                 SystemMessages.printRedColoredText("Date format must be (DD-MM-YYYY)");
                 SystemMessages.tryAgain();
@@ -70,8 +70,8 @@ public class PromptSwimmer {
         UI.print("Enter swimmer email: ");
         String email = UI.promptString();
 
-        while (email.isEmpty()) {
-            SystemMessages.printRedColoredText("Customer must have an email");
+        while (email.isEmpty() || !email.contains("@") || !email.contains(".")) {
+            SystemMessages.printRedColoredText("Invalid email. Please enter a valid email adresse.");
             email = UI.promptString();
         }
         return email;
@@ -94,19 +94,17 @@ public class PromptSwimmer {
     }
 
     // Prompts user for phone number
-    public String promptSwimmerPhoneNumber(){
+    public String promptSwimmerPhoneNumber() {
         boolean running = true;
         Scanner scan = new Scanner(System.in);
-        int phone = 0;
         String phoneDigits = "";
 
         UI.print("Enter swimmer's phone number: ");
-        while (running) {
-            if (scan.hasNextInt()) { // Checks if user-input is an int
-                phoneDigits = Integer.toString(phone);
-
-                // Checks if phone number is 8 digits
+        while (running/*scan.nextInt()*/) {
+            if (running/*scan.nextInt()*/) {
+                phoneDigits = Integer.toString(UI.promptInt());
                 phoneDigits = checkIfPhoneDigitsIs8(phoneDigits);
+                System.out.println("test");
                 running = false;
             } else {
                 SystemMessages.printRedColoredText("Phone number must be integer");
@@ -115,16 +113,14 @@ public class PromptSwimmer {
             }
         }
         return phoneDigits;
+    }
+    // Checks if phone digits is 8
+    private String checkIfPhoneDigitsIs8(String phoneDigits) {
+        while (phoneDigits.length() != 8) {
+            SystemMessages.printRedColoredText("Phone number must be 8 digits");
+            SystemMessages.tryAgain();
+            phoneDigits = Integer.toString(UI.promptInt());
         }
-
-        // Checks if phone digits is 8
-        private String checkIfPhoneDigitsIs8(String phoneDigits) {
-            while (phoneDigits.length() != 8) {
-                SystemMessages.printRedColoredText("Phone number must be 8 digits");
-                SystemMessages.tryAgain();
-                int phone = UI.promptInt();
-                phoneDigits = Integer.toString(phone);
-            }
-            return phoneDigits;
-        }
+        return phoneDigits;
+    }
 }
