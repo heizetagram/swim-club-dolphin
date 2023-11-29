@@ -19,7 +19,6 @@ public class Swimmer {
         this.birthdate = birthdate;
         this.phone = phone;
         this.email = email;
-        //setAgeFromBirthDate();
         ageGroup = calculateAgeGroup(age);
     }
 
