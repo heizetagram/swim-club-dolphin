@@ -14,8 +14,6 @@ public class ModifySwimmer {
     private CompetitiveSwimmer competitiveSwimmer;
     private CalculateSwimmerAge calculateSwimmerAge;
     private String name;
-    private String birthdate;
-    private String email;
     private String phone;
     private String newName;
     private String event;
@@ -66,12 +64,14 @@ public class ModifySwimmer {
 
     // Add event and position for competitive swimmer
     public void addEventAndPosition(){
+        UI.promptString(); // Scanner bug
         UI.print("Enter event: ");
         String event = UI.promptString();
         UI.print("Enter position: ");
         String position = UI.promptString();
 
         fileHandling.addEventAndPositionToCompetitiveSwimmers(event, position);
+        calculateSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
         fileHandling.saveCompetitionResultsToFile();
 
         SystemMessages.printGreenColoredText("Event and Position added to Competitive Swimmers!");
@@ -95,6 +95,7 @@ public class ModifySwimmer {
                     SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
 
                     setValueOfSwimmersToEdit(swimmerToEdit);
+                    calculateSwimmerAge.setSwimmersAge(fileHandling);
 
                     fileHandling.saveSwimmerToFile();
                     fileHandling.saveCompetitiveSwimmerToFile();
@@ -111,8 +112,6 @@ public class ModifySwimmer {
         name = promptSwimmer.promptSwimmerName();
         birthdate = promptSwimmer.promptBirthdate();
         phone = promptSwimmer.promptSwimmerPhoneNumber();
-        email = promptSwimmer.promptSwimmerEmail();
-
     }
 
     // Initialize new swimmer prompts
