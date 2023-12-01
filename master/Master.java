@@ -5,7 +5,6 @@ import menu.ChooseMenuOption;
 import menu.ShowMenu;
 import swimmer.CalculateSwimmerAge;
 import system.SystemRunning;
-import trainer.SortSwimmers;
 
 public class Master {
     private FileHandling fileHandling;
@@ -31,15 +30,6 @@ public class Master {
 
         calculateSwimmerAge.setSwimmersAge(fileHandling);
         calculateCompetitiveSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
-
-        // print competitive swimmers show null in team
-
-        SortSwimmers sortSwimmers = new SortSwimmers(fileHandling);
-        sortSwimmers.compareDisciplineAndSwimTime();
-        sortSwimmers.compareCompetitiveName();
-
-        //fileHandling.printAllCompetitiveSwimmers();
-        //fileHandling.printAllRegularSwimmers();
 
         while (SystemRunning.isRunning()) {
             ShowMenu.showRoleSelection();
