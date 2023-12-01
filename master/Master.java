@@ -32,9 +32,14 @@ public class Master {
         calculateSwimmerAge.setSwimmersAge(fileHandling);
         calculateCompetitiveSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
 
+        // print competitive swimmers show null in team
+
         SortSwimmers sortSwimmers = new SortSwimmers(fileHandling);
         sortSwimmers.compareDisciplineAndSwimTime();
-        sortSwimmers.printTop5CompetitiveSwimmers();
+        sortSwimmers.compareCompetitiveName();
+
+        //fileHandling.printAllCompetitiveSwimmers();
+        //fileHandling.printAllRegularSwimmers();
 
         while (SystemRunning.isRunning()) {
             ShowMenu.showRoleSelection();
