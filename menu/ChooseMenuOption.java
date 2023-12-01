@@ -1,5 +1,6 @@
 package menu;
 
+import filehandling.FileHandling;
 import filehandling.ModifySwimmer;
 import printinfo.PrintInfo;
 import trainer.SortSwimmers;
@@ -13,6 +14,7 @@ public class ChooseMenuOption {
     // Constructor
     public ChooseMenuOption() {
         modifySwimmer = new ModifySwimmer();
+        fileHandling = new FileHandling();
     }
 
     // CHOOSE MENU OPTIONS \\
@@ -59,7 +61,7 @@ public class ChooseMenuOption {
             case 1 -> {modifySwimmer.addSwimmer(); SystemMessages.pressEnterToContinue();}
             //case 2 -> {modifySwimmer.deleteSwimmer(); SystemMessages.pressEnterToContinue();}
             case 3 -> {modifySwimmer.editSwimmer(); SystemMessages.pressEnterToContinue();}
-            //case 4 -> {modifySwimmer.viewSwimmers(); SystemMessages.pressEnterToContinue();}
+            case 4 -> {modifySwimmer.editCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
             case 5 -> {modifySwimmer.addCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
             case 6 -> {modifySwimmer.addEventAndPosition(); SystemMessages.pressEnterToContinue();}
             case 9 -> SystemMessages.quitSystem();
