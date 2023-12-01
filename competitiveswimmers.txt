@@ -1,11 +1,12 @@
-Mia, 10-10-2000, 23, 12121212, d@dk.dk, BREAST, 05:04:20, SENIOR, tournament, 2
-Michael, 14-10-2005, 18, 12121212, d@.dk, BREAST, 07:00:00, ELDERLY, tournament, 3
-Christian, 07-02-2000, 23, 42424242, d@.dk, CRAWL, 08:05:03, SENIOR, tournament, 5
-Kristian, 04-02-1995, 28, 82379283, 2@.dk, BREAST, 05:02:03, SENIOR, tournament, 6
-John, 12-03-1996, 27, 48928374, fd@.dk, BREAST, 03:02:01, SENIOR, tournament, 7
-Bob, 10-02-2001, 22, 82739273, ed@.dk, BREAST, 08:02:20, SENIOR, tournament, 8
-Jaka, 12-04-2003, 20, 12121212, jasdf@gmail.com, CRAWL, 02:00:02, SENIOR, tournament, 9
-Lars, 01-02-2003, 20, 12312392, asjidf@gmail.com, MEDLEY, 01:00:20, SENIOR, tournament, 4
-Kirsten, 01-01-2001, 22, 12312384, asjdifasdf@gmail.com, MEDLEY, 00:00:01, SENIOR, tournament, 10
-Løkke, 05-06-2007, 16, 12313952, grgrgr@dk.dk, MEDLEY, 03:02:01, JUNIOR, tournament, 2
-Kaj, 05-06-2008, 15, 12312383, jsaidf@gmail.com, MEDLEY, 06:20:10, JUNIOR, tournament, 11
+Hejsa, 12-12-2000, 22, 12121212, dasd@g.dk, SENIOR, ACTIVE, false, BUTTERFLY, 00:12:12, tour1, 31
+Michael, 14-10-2005, 18, 12121212, d@.dk, SENIOR, ACTIVE, false, BREAST, 07:00:00, t1, 3
+Christian, 07-02-2000, 23, 42424242, d@.dk, SENIOR, ACTIVE, false, CRAWL, 08:05:03, t1, 3
+Kristian, 04-02-1995, 28, 82379283, 2@.dk, SENIOR, ACTIVE, false, BREAST, 05:02:03, t1, 3
+John, 12-03-1996, 27, 48928374, fd@.dk, SENIOR, ACTIVE, false, BREAST, 03:02:01, t1, 3
+Bob, 10-02-2001, 22, 82739273, ed@.dk, SENIOR, ACTIVE, false, BREAST, 08:02:20, t1, 3
+Jaka, 12-04-2003, 20, 12121212, jasdf@gmail.com, SENIOR, ACTIVE, false, CRAWL, 02:00:02, t1, 3
+Lars, 01-02-2003, 20, 12312392, asjidf@gmail.com, SENIOR, ACTIVE, false, MEDLEY, 01:00:20, t1, 3
+Kirsten, 01-01-2001, 22, 12312384, asjdifasdf@gmail.com, SENIOR, ACTIVE, false, MEDLEY, 00:00:01, t1, 3
+Løkke, 05-06-2007, 16, 12313952, grgrgr@dk.dk, JUNIOR, ACTIVE, false, MEDLEY, 03:02:01, t1, 3
+Kaj, 05-06-2008, 15, 12312383, jsaidf@gmail.com, JUNIOR, ACTIVE, false, MEDLEY, 06:20:10, t1, 3
+hej, 12-12-2000, 22, 12121212, asjdf@g.dk, SENIOR, ACTIVE, false, MEDLEY, 12:12:12, tour, 5
