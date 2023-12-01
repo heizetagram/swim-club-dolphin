@@ -45,7 +45,7 @@ public class ShowMenu {
         UI.println("(1) Add swimmer");
         UI.println("(2) Delete swimmer");
         UI.println("(3) Edit swimmer");
-        UI.println("(4) View swimmers");
+        UI.println("(4) Edit competitive swimmers");
         UI.println("(5) Add competitive swimmer");
         UI.println("(6) Add Event/position");
         UI.println("(9) Quit");
