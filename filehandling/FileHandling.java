@@ -1,12 +1,7 @@
 package filehandling;
 
-import printinfo.PrintInfo;
-import swimmer.CalculateSwimmerAge;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Swimmer;
-import ui.SystemMessages;
-import ui.UI;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -105,6 +100,8 @@ public class FileHandling {
             e.printStackTrace();
         }
     }
+
+    // Adds event to competittive swimmers
     public void addEventAndPositionToCompetitiveSwimmers (String event, String position){
         for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
             competitiveSwimmer.setEvent(event);
@@ -114,6 +111,8 @@ public class FileHandling {
         saveCompetitiveSwimmerToFile(); // Save the changes to the main competitive swimmers file
         saveCompetitionResultsToFile(); // save the changes to the competition results' file
     }
+
+    // Saves competition results to file
     public void saveCompetitionResultsToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("competitionresults.txt"))) {
             for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
@@ -125,31 +124,6 @@ public class FileHandling {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void printAllCompetitiveSwimmers(){
-        if (competitiveSwimmers.isEmpty()) {
-            SystemMessages.printRedColoredText("No competitive swimmers available");
-        }
-        else{
-            UI.println("Competitive swimmers:");
-            UI.println("----------------------------------");
-            for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
-                PrintInfo.printCompetitiveSwimmerInfo(competitiveSwimmer);
-            }
-        }
-    }
-    public void printAllRegularSwimmers(){
-        if (swimmers.isEmpty()) {
-            SystemMessages.printRedColoredText("No swimmers available");
-        }
-        else{
-            UI.println("Regular swimmers:");
-            UI.println("----------------------------------");
-            for (Swimmer swimmer : swimmers){
-                PrintInfo.printRegularSwimmerInfo(swimmer);
-            }
         }
     }
 
