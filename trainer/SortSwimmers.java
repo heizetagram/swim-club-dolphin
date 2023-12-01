@@ -2,8 +2,6 @@ package trainer;
 
 import filehandling.FileHandling;
 import swimmer.CompetitiveSwimmer;
-import ui.ConsoleColors;
-import ui.UI;
 
 import java.util.Comparator;
 
@@ -15,15 +13,15 @@ public class SortSwimmers {
     }
 
     // Sort competitive swimmer by Discipline and SwimTime
-    public void compareDisciplineAndSwimTime() {
+    public void compareCompetitiveDisciplineAndSwimTime() {
         Comparator<CompetitiveSwimmer> byDisciplineAndSwimTime = Comparator.comparing(CompetitiveSwimmer::getDiscipline).thenComparing(CompetitiveSwimmer::getSwimTime);
         fileHandling.getCompetitiveSwimmers().sort(byDisciplineAndSwimTime);
     }
 
-    // Sort competitive swimmer by name
-    public void compareCompetitiveName() {
-        Comparator<CompetitiveSwimmer> byName = Comparator.comparing(CompetitiveSwimmer::getName);
-        fileHandling.getCompetitiveSwimmers().sort(byName);
+    // Sort competitive swimmer by age group and name
+    public void compareCompetitiveAgeGroupAndName() {
+        Comparator<CompetitiveSwimmer> byAgeGroupAndName = Comparator.comparing(CompetitiveSwimmer::getAgeGroup).thenComparing(CompetitiveSwimmer::getName);
+        fileHandling.getCompetitiveSwimmers().sort(byAgeGroupAndName);
     }
 }
 
