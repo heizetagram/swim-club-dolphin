@@ -20,24 +20,10 @@ public class SortSwimmers {
         fileHandling.getCompetitiveSwimmers().sort(byDisciplineAndSwimTime);
     }
 
-    // Print top 5 competitive swimmers for each Discipline
-    public void printTop5CompetitiveSwimmers() {
-        String currentDiscipline = "";
-        int counter = 0;
-
-        for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
-            String discipline = competitiveSwimmer.getDiscipline();
-
-            if (!discipline.equals(currentDiscipline)) {
-                currentDiscipline = discipline;
-                counter = 0;
-            }
-
-            if (counter < 5) {
-                UI.printf("%s%-6s%s: %-15s %s%s%s\n", ConsoleColors.BLUE, competitiveSwimmer.getDiscipline(), ConsoleColors.RESET, competitiveSwimmer.getName(), ConsoleColors.YELLOW, competitiveSwimmer.getSwimTime(), ConsoleColors.RESET);
-                counter++;
-            }
-        }
+    // Sort competitive swimmer by name
+    public void compareCompetitiveName() {
+        Comparator<CompetitiveSwimmer> byName = Comparator.comparing(CompetitiveSwimmer::getName);
+        fileHandling.getCompetitiveSwimmers().sort(byName);
     }
 }
 
