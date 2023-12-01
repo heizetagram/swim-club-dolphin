@@ -4,6 +4,8 @@ import printinfo.PrintInfo;
 import swimmer.CalculateSwimmerAge;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Swimmer;
+import ui.SystemMessages;
+import ui.UI;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -123,6 +125,31 @@ public class FileHandling {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void printAllCompetitiveSwimmers(){
+        if (competitiveSwimmers.isEmpty()) {
+            SystemMessages.printRedColoredText("No competitive swimmers available");
+        }
+        else{
+            UI.println("Competitive swimmers:");
+            UI.println("----------------------------------");
+            for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
+                PrintInfo.printCompetitiveSwimmerInfo(competitiveSwimmer);
+            }
+        }
+    }
+    public void printAllRegularSwimmers(){
+        if (swimmers.isEmpty()) {
+            SystemMessages.printRedColoredText("No swimmers available");
+        }
+        else{
+            UI.println("Regular swimmers:");
+            UI.println("----------------------------------");
+            for (Swimmer swimmer : swimmers){
+                PrintInfo.printRegularSwimmerInfo(swimmer);
+            }
         }
     }
 
