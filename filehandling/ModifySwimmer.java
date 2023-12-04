@@ -51,8 +51,7 @@ public class ModifySwimmer {
         initCurrentSwimmerPrompts();
 
         for (Swimmer swimmer : fileHandling.getSwimmers()) {
-            if (swimmer.getName().equals(name)
-                && (swimmer.getPhone().equals(phone))) {
+            if (swimmer.getName().equals(name) && (swimmer.getPhone().equals(phone))) {
                 String discipline = promptSwimmer.addCompetitiveSwimmerDiscipline(competitiveSwimmer);;
                 String swimTime = promptSwimmer.promptSwimmersTime();
                 String position = promptSwimmer.promptSwimmersPosition();
@@ -61,8 +60,7 @@ public class ModifySwimmer {
                 calculateSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
 
                 for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
-                    if (competitiveSwimmer.getName().equals(name)
-                    && (competitiveSwimmer.getPhone().equals(phone))) {
+                    if (competitiveSwimmer.getName().equals(name) && (competitiveSwimmer.getPhone().equals(phone))) {
                         competitiveSwimmer.setActivityType(swimmer.getActivityType());
                         competitiveSwimmer.setHasPaid(swimmer.getHasPaid());
                         fileHandling.saveCompetitiveSwimmerToFile();
