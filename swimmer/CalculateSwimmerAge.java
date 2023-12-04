@@ -75,7 +75,7 @@ public class CalculateSwimmerAge {
         String ageGroup;
         if (age < 18) {
             ageGroup = "JUNIOR";
-        } else if (age > 18 && age < 60) {
+        } else if (age < 60) {
             ageGroup = "SENIOR";
         } else {
             ageGroup = "ELDERLY";

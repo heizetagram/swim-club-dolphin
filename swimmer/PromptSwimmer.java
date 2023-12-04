@@ -12,7 +12,7 @@ public class PromptSwimmer {
     // Prompts user for swim time
     public String promptSwimmersTime() {
         CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer("", "", "", "", null, "", "", "");
-        UI.print("Enter swimmers time! example: 00:00:00");
+        UI.print("Enter swimmers time! example: 00:00:00: ");
         String swimTime = UI.promptString();
         boolean running = true;
 
@@ -20,7 +20,7 @@ public class PromptSwimmer {
 
         while (running) {
             if (parts[0].length() != 2 || parts[1].length() != 2 || parts[2].length() != 2) {
-                SystemMessages.printRedColoredText("Time format must be (XX:XX:XX)");
+                SystemMessages.printRedColoredText("Time format must be (XX:XX:XX) ");
                 SystemMessages.tryAgain();
                 swimTime = UI.promptString();
             } else {
@@ -33,7 +33,7 @@ public class PromptSwimmer {
     // Prompt user for swimmer's position
     public String promptSwimmersPosition(){
         String position = "";
-        UI.print("Enter swimmers position");
+        UI.print("Enter swimmers position: ");
         while (position.isEmpty()) {
             position = UI.promptString();
             if(position.isEmpty())
@@ -45,7 +45,7 @@ public class PromptSwimmer {
     // Prompt user for swimmer's event
     public String promptSwimmersEvent(){
         String event = "";
-        UI.print("Enter name of the event");
+        UI.print("Enter name of the event: ");
         while (event.isEmpty()){
             event = UI.promptString();
             if(event.isEmpty()) {
@@ -139,7 +139,7 @@ public class PromptSwimmer {
 
     // Prompts user for discipline
     public String addCompetitiveSwimmerDiscipline(CompetitiveSwimmer competitiveSwimmer) {
-        UI.println("Choose discipline:");
+        UI.println("Choose discipline: ");
         ShowMenu.showDisciplineMenu();
         String disciplineChoice = UI.promptString();
         String discipline = "";

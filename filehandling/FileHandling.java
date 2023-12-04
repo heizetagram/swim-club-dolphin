@@ -2,7 +2,6 @@ package filehandling;
 
 import swimmer.CompetitiveSwimmer;
 import swimmer.Swimmer;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -29,7 +28,7 @@ public class FileHandling {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
-                    if (parts.length == 6) {
+                    if (parts.length == 8) {
                         swimmers.add(new Swimmer(parts[0], parts[1], parts[3], parts[4]));
                     }
                 }
@@ -49,7 +48,9 @@ public class FileHandling {
                         + ", " + swimmer.getAge()
                         + ", " + swimmer.getPhone()
                         + ", " + swimmer.getEmail()
-                        + ", " + swimmer.getAgeGroup());
+                        + ", " + swimmer.getAgeGroup()
+                        + ", " + swimmer.getActivityTypeAsString()
+                        + ", " + swimmer.getHasPaid());
                 writer.newLine();
             }
             this.swimmers = allSwimmers;
@@ -65,8 +66,8 @@ public class FileHandling {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
-                    if (parts.length == 10) {
-                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[5], parts[6], parts[8], parts[9]));
+                    if (parts.length == 12) {
+                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[8], parts[9], parts[10], parts[11]));
                     }
                 }
             } catch (IOException e) {
@@ -85,9 +86,11 @@ public class FileHandling {
                         + ", " + competitiveSwimmer.getAge()
                         + ", " + competitiveSwimmer.getPhone()
                         + ", " + competitiveSwimmer.getEmail()
+                        + ", " + competitiveSwimmer.getAgeGroup()
+                        + ", " + competitiveSwimmer.getActivityTypeAsString()
+                        + ", " + competitiveSwimmer.getHasPaid()
                         + ", " + competitiveSwimmer.getDiscipline()
                         + ", " + competitiveSwimmer.getSwimTime()
-                        + ", " + competitiveSwimmer.getAgeGroup()
                         + ", " + competitiveSwimmer.getEvent()
                         + ", " + competitiveSwimmer.getPosition());
                 writer.newLine();
@@ -97,6 +100,8 @@ public class FileHandling {
             e.printStackTrace();
         }
     }
+
+    // Adds event to competittive swimmers
     public void addEventAndPositionToCompetitiveSwimmers (String event, String position){
         for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
             competitiveSwimmer.setEvent(event);
@@ -106,6 +111,8 @@ public class FileHandling {
         saveCompetitiveSwimmerToFile(); // Save the changes to the main competitive swimmers file
         saveCompetitionResultsToFile(); // save the changes to the competition results' file
     }
+
+    // Saves competition results to file
     public void saveCompetitionResultsToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("competitionresults.txt"))) {
             for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
