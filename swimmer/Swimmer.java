@@ -25,7 +25,6 @@ public class Swimmer {
     public int getSubscriptionFee() {
         return subscriptionFee;
     }
-
     public String getName() {
         return name;
     }
