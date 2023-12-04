@@ -10,6 +10,7 @@ public class Swimmer {
     private String ageGroup;
     private boolean activityType;
     private boolean hasPaid;
+    private int subscriptionFee;
 
     public Swimmer(String name, String birthdate, String phone, String email) {
         this.name = name;
@@ -21,6 +22,10 @@ public class Swimmer {
     }
 
     // Getters
+    public int getSubscriptionFee() {
+        return subscriptionFee;
+    }
+
     public String getName() {
         return name;
     }
@@ -58,6 +63,10 @@ public class Swimmer {
     // Setters
     public void setName(String name) {
         this.name = name;
+    }
+    public void setSubscriptionFee(int subscriptionFee)
+    {
+        this.subscriptionFee = subscriptionFee;
     }
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;

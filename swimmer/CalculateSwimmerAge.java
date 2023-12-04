@@ -19,6 +19,7 @@ public class CalculateSwimmerAge {
             int age = calculateAge(localDateBirthdate);
             swimmer.setAge(age);
             swimmer.setAgeGroup(calculateAgeGroup(age));
+
         }
         fileHandling.saveSwimmerToFile();
     }
@@ -82,4 +83,5 @@ public class CalculateSwimmerAge {
         }
         return ageGroup;
     }
+
 }
