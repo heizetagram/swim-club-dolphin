@@ -5,7 +5,6 @@ import menu.ChooseMenuOption;
 import menu.ShowMenu;
 import swimmer.CalculateSwimmerAge;
 import swimmer.CalculateSwimmerSubscription;
-import swimmer.Swimmer;
 import system.SystemRunning;
 
 public class Master {
@@ -32,12 +31,6 @@ public class Master {
 
     private void run() {
         initVars();
-
-        calculateSwimmerAge.setSwimmersAge(fileHandling);
-        calculateCompetitiveSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
-
-        calculateSwimmerSubscription.setSwimmersSubscription(fileHandling);
-        System.out.println(fileHandling.getSwimmers().get(0).getSubscriptionFee());
 
         while (SystemRunning.isRunning()) {
             ShowMenu.showRoleSelection();
