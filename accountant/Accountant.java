@@ -2,11 +2,11 @@ package accountant;
 
 public class Accountant {
     // membership fee based on the member's age and activity type.
-    public double calculateMembershipFee(int age, String activityType) {
+    public double calculateMembershipFee(String ageGroup, String activityType) {
         double baseFee = 0.0;
 
         if (activityType.equalsIgnoreCase("active")) {
-            if (age < 18) {
+            if (ageGroup.equals("JUNIOR")) {
                 baseFee = 1000.0; // Junior active fee
             } else {
                 baseFee = 1600.0; // Senior active fee
@@ -16,7 +16,7 @@ public class Accountant {
         }
 
         // discounts for members over 60 years on the senior rate.
-        if (age > 60 && activityType.equalsIgnoreCase("active")) {
+        if (ageGroup.equals("ELDERLY") && activityType.equalsIgnoreCase("active")) {
             baseFee *= 0.75; // Apply 25% discount for seniors on the senior active rate
         }
 
