@@ -134,4 +134,9 @@ public class FileHandling {
     public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmers() {
         return competitiveSwimmers;
     }
+
+    // Setters
+    public void setSwimmers(ArrayList<Swimmer> swimmers) {
+        this.swimmers = swimmers;
+    }
 }
