@@ -1,4 +1,4 @@
-Kaj, 05-06-2008, 15, 12312383, jsaidf@gmail.com, JUNIOR, ACTIVE, false, MEDLEY, 06:20:10, t1, 3
+Kaj, 05-06-2008, 15, 12312383, jsaidf@gmail.com, JUNIOR, PASSIVE, false, MEDLEY, 06:20:10, t1, 3
 Løkke, 05-06-2007, 16, 12313952, grgrgr@dk.dk, JUNIOR, ACTIVE, false, MEDLEY, 03:02:01, t1, 3
 Bob, 10-02-2001, 22, 82739273, ed@.dk, SENIOR, ACTIVE, false, BREAST, 08:02:20, t1, 3
 Christian, 07-02-2000, 23, 42424242, d@.dk, SENIOR, ACTIVE, false, CRAWL, 08:05:03, t1, 3
