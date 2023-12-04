@@ -1,14 +1,3 @@
-Bjorn, 12-12-2000, 22, 12121212, david@gmail.com, SENIOR, ACTIVE, false
-Bjorg, 10-10-2003, 20, 12837462, test@gai.com, SENIOR, ACTIVE, false
-Cim, 01-01-2010, 13, 83927463, cim@gmail.com, JUNIOR, ACTIVE, false
-Dani, 01-02-1940, 83, 84729384, danilu1999@gmail.com, ELDERLY, ACTIVE, false
-hej, 12-12-2000, 22, 12312312, hejkrasdf@gam.com, SENIOR, ACTIVE, false
-Lchaim, 10-10-2006, 17, 91847263, lchaim@yahoo.com, JUNIOR, ACTIVE, false
-hej, 12-12-2000, 22, 12121212, hej@gmail.com, SENIOR, ACTIVE, false
 Carsten, 05-02-2000, 23, 12928323, wewaa@gmail.com, SENIOR, ACTIVE, false
 hejsa, 12-12-2000, 22, 13231212, jdaos@gna.com, SENIOR, ACTIVE, false
-hej, 12-12-2000, 22, 12312312, asdf@gmail.com, SENIOR, ACTIVE, false
-hej, 05-04-2004, 19, 19823132, adsif@gmail.com, SENIOR, ACTIVE, false
-hej, 12-12-2001, 21, 12312312, asdf@ga.dk, SENIOR, ACTIVE, false
-hej, 12-12-2000, 22, 12121212, dajv@gmail.com, SENIOR, ACTIVE, false
-hJESA, 12-10-2023, 0, 12312312, ashidfoas@gmail.com, JUNIOR, ACTIVE, false
+hej, 12-12-2000, 22, 32323232, jdaos@gna.com, SENIOR, ACTIVE, false
