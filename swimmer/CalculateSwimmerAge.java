@@ -9,9 +9,7 @@ import java.time.Period;
 
 public class CalculateSwimmerAge {
 
-    // Jeg gider ik at kalde på fileHandling der ligger i main, men det virker : - (
-    // Jeg forstår ikke hvorfor at man skal kalde på fileHandling i main
-    // Det er som om at, når jeg bruger fileHandling.getSwimmers fra en lokal FileHandling instans, laver den bare en kopi af FileHandling.getSwimmers, og opdaterer ArrayListen lokalt.
+    // Set swimmers age
     public void setSwimmersAge(FileHandling fileHandling) {
         for (Swimmer swimmer : fileHandling.getSwimmers()) {
             String[] parts = swimmer.getBirthdate().split("-");
@@ -19,7 +17,6 @@ public class CalculateSwimmerAge {
             int age = calculateAge(localDateBirthdate);
             swimmer.setAge(age);
             swimmer.setAgeGroup(calculateAgeGroup(age));
-
         }
         fileHandling.saveSwimmerToFile();
     }
