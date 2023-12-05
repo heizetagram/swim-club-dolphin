@@ -1,7 +1,6 @@
 package printinfo;
 
 import filehandling.FileHandling;
-import swimmer.CalculateSwimmerAge;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Swimmer;
 import ui.ConsoleColors;
@@ -9,15 +8,8 @@ import ui.SystemMessages;
 import ui.UI;
 
 public class PrintInfo {
-    private CalculateSwimmerAge calculateSwimmerAge;
-
-    public PrintInfo() {
-        calculateSwimmerAge = new CalculateSwimmerAge();
-    }
-
     // Prints all competitive swimmers
     public void printAllCompetitiveSwimmers(FileHandling fileHandling) {
-        calculateSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
         if (fileHandling.getCompetitiveSwimmers().isEmpty()) {
             SystemMessages.printRedColoredText("No competitive swimmers available");
         } else {
@@ -42,7 +34,6 @@ public class PrintInfo {
 
     // Prints out all regular swimmers
     public void printAllRegularSwimmers(FileHandling fileHandling){
-        calculateSwimmerAge.setSwimmersAge(fileHandling); // -- Hvorfor skal man calculate age, før at den gider at vise alderen og aldersgruppen
         if (fileHandling.getSwimmers().isEmpty()) {
             SystemMessages.printRedColoredText("No swimmers available");
         } else {
