@@ -28,8 +28,8 @@ public class FileHandling {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
-                    if (parts.length == 8) {
-                        swimmers.add(new Swimmer(parts[0], parts[1], parts[3], parts[4]));
+                    if (parts.length == 9) {
+                        swimmers.add(new Swimmer(parts[0], parts[1], parts[3], parts[4], parts[6], parts[7]));
                     }
                 }
             } catch (IOException e) {
@@ -41,7 +41,6 @@ public class FileHandling {
     // Save swimmer logic
     public void saveSwimmerToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("swimmers.txt"))) {
-            ArrayList<Swimmer> allSwimmers = new ArrayList<>(getSwimmers());
             for (Swimmer swimmer : swimmers) {
                 writer.write(swimmer.getName()
                         + ", " + swimmer.getBirthdate()
@@ -49,11 +48,11 @@ public class FileHandling {
                         + ", " + swimmer.getPhone()
                         + ", " + swimmer.getEmail()
                         + ", " + swimmer.getAgeGroup()
-                        + ", " + swimmer.getActivityTypeAsString()
-                        + ", " + swimmer.getHasPaid());
+                        + ", " + swimmer.getActivityType()
+                        + ", " + swimmer.getHasPaid()
+                        + ", " + swimmer.getSubscriptionFee());
                 writer.newLine();
             }
-            this.swimmers = allSwimmers;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,8 +65,8 @@ public class FileHandling {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     parts = line.split(", ");
-                    if (parts.length == 12) {
-                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[8], parts[9], parts[10], parts[11]));
+                    if (parts.length == 13) {
+                        competitiveSwimmers.add(new CompetitiveSwimmer(parts[0], parts[1], parts[3], parts[4], parts[6], parts[7], parts[9], parts[10], parts[11], parts[12]));
                     }
                 }
             } catch (IOException e) {
@@ -87,8 +86,9 @@ public class FileHandling {
                         + ", " + competitiveSwimmer.getPhone()
                         + ", " + competitiveSwimmer.getEmail()
                         + ", " + competitiveSwimmer.getAgeGroup()
-                        + ", " + competitiveSwimmer.getActivityTypeAsString()
+                        + ", " + competitiveSwimmer.getActivityType()
                         + ", " + competitiveSwimmer.getHasPaid()
+                        + ", " + competitiveSwimmer.getSubscriptionFee()
                         + ", " + competitiveSwimmer.getDiscipline()
                         + ", " + competitiveSwimmer.getSwimTime()
                         + ", " + competitiveSwimmer.getEvent()
@@ -101,7 +101,7 @@ public class FileHandling {
         }
     }
 
-    // Adds event to competittive swimmers
+    // Adds event to competitive swimmers
     public void addEventAndPositionToCompetitiveSwimmers (String event, String position){
         for (CompetitiveSwimmer competitiveSwimmer : competitiveSwimmers) {
             competitiveSwimmer.setEvent(event);
