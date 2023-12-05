@@ -1,3 +1,4 @@
-Carsten, 05-02-2000, 23, 12928323, wewaa@gmail.com, SENIOR, ACTIVE, false
-hejsa, 12-12-2000, 22, 13231212, jdaos@gna.com, SENIOR, ACTIVE, false
-hej, 12-12-2000, 22, 32323232, jdaos@gna.com, SENIOR, ACTIVE, false
+Carsten, 30-01-2001, 22, 12312300, carsten@gmail.com, SENIOR, ACTIVE, true, 0
+Bjarke, 12-12-2017, 7, 19191919, bjarke@dmai.com, JUNIOR, ACTIVE, false, 1000
+hej, 12-12-2000, 22, 32323232, jdaos@gna.com, SENIOR, ACTIVE, false, 1600
+CimSun, 12-11-2007, 16, 12312312, cimsun@gm.ic, JUNIOR, ACTIVE, false, 1000
