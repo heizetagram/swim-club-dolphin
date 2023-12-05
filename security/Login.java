@@ -6,33 +6,29 @@ import system.SystemRunning;
 import ui.UI;
 
 public class Login {
-
-    private ShowMenu showMenu;
-    private ChooseMenuOption chooseMenuOption;
     private Password password;
+    private boolean accountantLoggedIn;
 
     // Constructor
     public Login() {
         password = new Password();
-        showMenu = new ShowMenu();
-        chooseMenuOption = new ChooseMenuOption();
     }
 
     // Login Trainer
-    public void loginTrainer() {
+    public void loginTrainer(ChooseMenuOption chooseMenuOption) {
         while (SystemRunning.isRunning()) { // Keep showing Customer's menu while logged in
-            showMenu.showTrainerMenu();
+            ShowMenu.showTrainerMenu();
             chooseMenuOption.chooseTrainerMenuOption();
         }
     }
 
     // Foreman password
-    public void loginForeman() {
+    public void loginForeman(ChooseMenuOption chooseMenuOption) {
         UI.println("Enter password");
         UI.promptString(); // Scanner bug
         password.checkPassword(UI.promptString(), "1");
-        while (password.isPasswordCorrect() && SystemRunning.isRunning()) { // Keep showing Harry's menu while logged in
-            showMenu.showForemanMenu();
+        while (password.isPasswordCorrect() && SystemRunning.isRunning()) {
+            ShowMenu.showForemanMenu();
             chooseMenuOption.chooseForemanMenuOption();
         }
         if (!password.isPasswordCorrect()) {
@@ -41,12 +37,12 @@ public class Login {
     }
 
     // Accountant password
-    public void loginAccountant() {
+    public void loginAccountant(ChooseMenuOption chooseMenuOption) {
         UI.println("Enter password");
         UI.promptString(); // Scanner bug
         password.checkPassword(UI.promptString(), "1");
         while (password.isPasswordCorrect() && SystemRunning.isRunning()) { // Keep showing Accountant's menu while logged in
-            showMenu.showAccountantMenu();
+            ShowMenu.showAccountantMenu();
             chooseMenuOption.chooseAccountantMenuOption();
         }
         if (!password.isPasswordCorrect()) {
