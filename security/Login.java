@@ -48,5 +48,9 @@ public class Login {
         if (!password.isPasswordCorrect()) {
             SystemRunning.setRunning(false);
         }
+        accountantLoggedIn = true;
+    }
+    public boolean isTrainerLoggedIn() {
+        return accountantLoggedIn;
     }
 }
