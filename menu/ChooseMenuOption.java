@@ -12,6 +12,7 @@ public class ChooseMenuOption {
     private ModifySwimmer modifySwimmer;
     private FileHandling fileHandling;
     private PrintInfo printInfo;
+    private Login login;
 
     // Constructor
     public ChooseMenuOption(FileHandling fileHandling) {
