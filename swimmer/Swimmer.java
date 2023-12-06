@@ -1,6 +1,9 @@
 
 package swimmer;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class Swimmer {
     private String name;
     private String birthdate;
@@ -8,19 +11,56 @@ public class Swimmer {
     private String email;
     private int age;
     private String ageGroup;
-    private boolean activityType;
-    private boolean hasPaid;
+    private String activityType;
+    private String hasPaid;
+    private int subscriptionFee;
 
-    public Swimmer(String name, String birthdate, String phone, String email) {
+    public Swimmer(String name, String birthdate, String phone, String email, String activityType, String hasPaid) {
         this.name = name;
         this.birthdate = birthdate;
         this.phone = phone;
         this.email = email;
-        activityType = true;
-        hasPaid = false;
+        this.activityType = activityType;
+        this.hasPaid = hasPaid;
+        age = calculateAge(convertBirthdateToLocalDate());
+        ageGroup = calculateAgeGroup(age);
+    }
+
+    // Converts String birthdate to LocalDateTime
+    public LocalDate convertBirthdateToLocalDate() {
+        String[] parts = birthdate.split("-");
+
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+
+        return LocalDate.of(year, month, day);
+    }
+
+    // Calculates age
+    // Subtracts user-given birthdate from the current date
+    public int calculateAge(LocalDate birthdate) {
+        Period yearDifference = Period.between(birthdate, LocalDate.now());
+        return yearDifference.getYears();
+    }
+
+    // Calculates age group
+    public String calculateAgeGroup(int age) {
+        String ageGroup;
+        if (age < 18) {
+            ageGroup = "JUNIOR";
+        } else if (age < 60) {
+            ageGroup = "SENIOR";
+        } else {
+            ageGroup = "ELDERLY";
+        }
+        return ageGroup;
     }
 
     // Getters
+    public int getSubscriptionFee() {
+        return subscriptionFee;
+    }
     public String getName() {
         return name;
     }
@@ -39,25 +79,19 @@ public class Swimmer {
     public String getAgeGroup() {
         return ageGroup;
     }
-    public boolean getActivityType() {
+    public String getActivityType() {
         return activityType;
     }
-    public String getActivityTypeAsString() {
-        String activityType;
-        if (this.activityType) {
-            activityType = "ACTIVE";
-        } else {
-            activityType = "PASSIVE";
-        }
-        return activityType;
-    }
-    public boolean getHasPaid() {
+    public String getHasPaid() {
         return hasPaid;
     }
 
     // Setters
     public void setName(String name) {
         this.name = name;
+    }
+    public void setSubscriptionFee(int subscriptionFee) {
+        this.subscriptionFee = subscriptionFee;
     }
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
@@ -74,16 +108,10 @@ public class Swimmer {
     public void setAgeGroup(String ageGroup) {
         this.ageGroup = ageGroup;
     }
-    public void setActivityType(boolean activityType) {
+    public void setActivityType(String activityType) {
         this.activityType = activityType;
     }
-    public void setActivityTypeStringToBoolean(String activityTypeAsString) {
-        switch (activityTypeAsString) {
-            case "ACTIVE" -> activityType = true;
-            case "PASSIVE" -> activityType = false;
-        }
-    }
-    public void setHasPaid(boolean hasPaid) {
+    public void setHasPaid(String hasPaid) {
         this.hasPaid = hasPaid;
     }
 }

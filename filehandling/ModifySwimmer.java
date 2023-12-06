@@ -1,15 +1,16 @@
 package filehandling;
 
+import accountant.CalculateSwimmerSubscription;
 import swimmer.*;
 import ui.ConsoleColors;
 import ui.SystemMessages;
 import ui.UI;
 
+import java.util.ArrayList;
+
 public class ModifySwimmer {
     private FileHandling fileHandling;
-    private PromptSwimmer promptSwimmer;
-    private CompetitiveSwimmer competitiveSwimmer;
-    private CalculateSwimmerAge calculateSwimmerAge;
+    private PromptUser promptUser;
     private String name;
     private String phone;
     private String newName;
@@ -22,43 +23,72 @@ public class ModifySwimmer {
     private String newPosition;
 
     // Constructor
-    public ModifySwimmer() {
-        fileHandling = new FileHandling();
-        promptSwimmer = new PromptSwimmer();
-        competitiveSwimmer = new CompetitiveSwimmer("", "", "","", null, "", "", "");
-        calculateSwimmerAge = new CalculateSwimmerAge();
+    public ModifySwimmer(FileHandling fileHandling) {
+        this.fileHandling = fileHandling;
+        promptUser = new PromptUser();
     }
 
     // Add swimmer
     public void addSwimmer() {
         UI.promptString(); // Scanner bug
-        String name = promptSwimmer.promptSwimmerName();
-        String birthdate = promptSwimmer.promptBirthdate();
-        String phone = promptSwimmer.promptSwimmerPhoneNumber();
-        String email = promptSwimmer.promptSwimmerEmail();
+        String name = promptUser.promptSwimmerName();
+        String birthdate = promptUser.promptBirthdate();
+        String phone = promptUser.promptSwimmerPhoneNumber();
+        String email = promptUser.promptSwimmerEmail();
 
-        fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email));
-        calculateSwimmerAge.setSwimmersAge(fileHandling);
+        fileHandling.getSwimmers().add(new Swimmer(name, birthdate, phone, email, "ACTIVE", "false"));
         fileHandling.saveSwimmerToFile();
         SystemMessages.printGreenColoredText("Successfully added a swimmer!");
     }
 
     // Add competitive swimmer
-    public void addCompetitiveSwimmer(){
-        UI.promptString(); // Scanner bug
-        String name = promptSwimmer.promptSwimmerName();
-        String birthdate = promptSwimmer.promptBirthdate();
-        String phone = promptSwimmer.promptSwimmerPhoneNumber();
-        String email = promptSwimmer.promptSwimmerEmail();
-        String discipline = promptSwimmer.addCompetitiveSwimmerDiscipline(competitiveSwimmer);;
-        String swimTime = promptSwimmer.promptSwimmersTime();
-        String position = promptSwimmer.promptSwimmersPosition();
-        String event = promptSwimmer.promptSwimmersEvent();
+    public void addCompetitiveSwimmer() {
+        boolean hasFoundCompetitiveSwimmer = false;
+        UI.println("Who would you like to add as a competitive swimmer?");
+        initCurrentSwimmerPrompts();
 
-        fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, birthdate, phone, email, discipline , swimTime, event, position));
-        calculateSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
-        fileHandling.saveCompetitiveSwimmerToFile();
-        SystemMessages.printGreenColoredText("Successfully added a swimmer!");
+        for (Swimmer swimmer : fileHandling.getSwimmers()) {
+            if (swimmer.getName().equals(name) && (swimmer.getPhone().equals(phone))) {
+                String discipline = promptUser.addCompetitiveSwimmerDiscipline();
+                String swimTime = promptUser.promptSwimmersTime();
+                String position = promptUser.promptSwimmersPosition();
+                String event = promptUser.promptSwimmersEvent();
+
+                fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, swimmer.getBirthdate(), phone, swimmer.getEmail(), swimmer.getActivityType(), swimmer.getHasPaid(), discipline, swimTime, event, position));
+
+                CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
+                calculateSwimmerSubscription.setCompetitiveSwimmersSubscription(fileHandling);
+                calculateSwimmerSubscription.checkIfPaid(fileHandling);
+
+                fileHandling.saveCompetitiveSwimmerToFile();
+
+                deleteSwimmer(name, phone);
+                SystemMessages.printGreenColoredText("Successfully made " + ConsoleColors.BLUE + name + ConsoleColors.GREEN_BRIGHT + " a competitive swimmer!");
+                hasFoundCompetitiveSwimmer = true;
+            }
+        }
+        if (!hasFoundCompetitiveSwimmer) {
+            SystemMessages.printRedColoredText("No swimmer matching criteria");
+        }
+    }
+
+    // Deletes a swimmer
+    public void deleteSwimmer(String name, String phone) {
+        ArrayList<Swimmer> updatedSwimmers = new ArrayList<>();
+
+        for (Swimmer swimmer : fileHandling.getSwimmers()) {
+            if (!(swimmer.getName().equals(name)) || !swimmer.getPhone().equals(phone)) {
+                updatedSwimmers.add(swimmer);
+            }
+        }
+
+        if (updatedSwimmers.size() < fileHandling.getSwimmers().size()) {
+            fileHandling.setSwimmers(updatedSwimmers);
+            fileHandling.saveSwimmerToFile();
+            //SystemMessages.printGreenColoredText("Successfully deleted swimmer");
+        } else {
+            SystemMessages.printRedColoredText("No swimmer matching criteria");
+        }
     }
 
     // Add event and position for competitive swimmer
@@ -70,7 +100,6 @@ public class ModifySwimmer {
         String position = UI.promptString();
 
         fileHandling.addEventAndPositionToCompetitiveSwimmers(event, position);
-        calculateSwimmerAge.setCompetitiveSwimmersAge(fileHandling);
         fileHandling.saveCompetitionResultsToFile();
 
         SystemMessages.printGreenColoredText("Event and Position added to Competitive Swimmers!");
@@ -81,41 +110,39 @@ public class ModifySwimmer {
         initCurrentSwimmerPrompts();
         Swimmer swimmerToEdit = null;
         for (Swimmer swimmer : fileHandling.getSwimmers()){
-            if (swimmer.getName().equals(name)
-                && (swimmer.getPhone().equals(phone))) {
-                    swimmerToEdit = swimmer;
+            if (swimmer.getName().equals(name) && (swimmer.getPhone().equals(phone))) {
+                swimmerToEdit = swimmer;
+                SystemMessages.printNewInfo();
 
-                    UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
+                initNewSwimmerPrompts();
 
-                    initNewSwimmerPrompts();
+                setValueOfSwimmersToEdit(swimmerToEdit);
+                swimmer.calculateAge(swimmer.convertBirthdateToLocalDate());
+                swimmer.calculateAgeGroup(swimmer.getAge());
+                // -- Husk at calculate membership
 
-                    SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
-
-                    setValueOfSwimmersToEdit(swimmerToEdit);
-                    calculateSwimmerAge.setSwimmersAge(fileHandling);
-
-                    fileHandling.saveSwimmerToFile();
-                    fileHandling.saveCompetitiveSwimmerToFile();
-                }
-            if (swimmerToEdit == null) {
-                SystemMessages.printRedColoredText("No Swimmer found!\n");
+                fileHandling.saveSwimmerToFile();
+                SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
             }
+        }
+        if (swimmerToEdit == null) {
+            SystemMessages.printRedColoredText("No Swimmer found!\n");
         }
     }
 
     // Initialize current swimmer prompts
     private void initCurrentSwimmerPrompts() {
         UI.promptString(); // Scanner bug
-        name = promptSwimmer.promptSwimmerName();
-        phone = promptSwimmer.promptSwimmerPhoneNumber();
+        name = promptUser.promptSwimmerName();
+        phone = promptUser.promptSwimmerPhoneNumber();
     }
 
     // Initialize new swimmer prompts
     private void initNewSwimmerPrompts(){
-        newName = promptSwimmer.promptSwimmerName();
-        newBirthdate = promptSwimmer.promptBirthdate();
-        newPhone = promptSwimmer.promptSwimmerPhoneNumber();
-        newEmail = promptSwimmer.promptSwimmerEmail();
+        newName = promptUser.promptSwimmerName();
+        newBirthdate = promptUser.promptBirthdate();
+        newPhone = promptUser.promptSwimmerPhoneNumber();
+        newEmail = promptUser.promptSwimmerEmail();
     }
 
     // Set value of swimmers to edit
@@ -126,53 +153,42 @@ public class ModifySwimmer {
             swimmersToEdit.setEmail(newEmail);
 
     }
-    public void editCompetitiveSwimmer() {
-        initCurrentCompetitiveSwimmerPrompts();
-        CompetitiveSwimmer competitiveSwimmerToEdit = null;
-        for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()){
-            if (competitiveSwimmer.getName().equals(name)
-                    && (competitiveSwimmer.getPhone().equals(phone))) {
-                competitiveSwimmerToEdit = competitiveSwimmer;
 
-                UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO");
+    // Edit competitive swimmer
+    public void editCompetitiveSwimmer() {
+        initCurrentSwimmerPrompts();
+
+        CompetitiveSwimmer competitiveSwimmerToEdit = null;
+        for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
+            if (competitiveSwimmer.getName().equals(name) && (competitiveSwimmer.getPhone().equals(phone))) {
+                competitiveSwimmerToEdit = competitiveSwimmer;
+                SystemMessages.printNewInfo();
 
                 initNewCompetitiveSwimmerPrompts();
 
-                SystemMessages.printGreenColoredText("Successfully edited competitive swimmer\n");
-
                 setValueOfCompetitiveSwimmersToEdit(competitiveSwimmerToEdit);
-                calculateSwimmerAge.setSwimmersAge(fileHandling);
+                competitiveSwimmer.calculateAge(competitiveSwimmer.convertBirthdateToLocalDate());
+                competitiveSwimmer.calculateAgeGroup(competitiveSwimmer.getAge());
 
                 fileHandling.saveCompetitiveSwimmerToFile();
-                fileHandling.saveCompetitiveSwimmerToFile();
-            }
-            if (competitiveSwimmerToEdit == null) {
-                SystemMessages.printRedColoredText("No competitive swimmer found!\n");
+                SystemMessages.printGreenColoredText("Successfully edited competitive swimmer");
             }
         }
-    }
-    private void initCurrentCompetitiveSwimmerPrompts() {
-        UI.promptString(); // Scanner bug
-        name = promptSwimmer.promptSwimmerName();
-        phone = promptSwimmer.promptSwimmerPhoneNumber();
-       /* discipline = promptSwimmer.addCompetitiveSwimmerDiscipline(competitiveSwimmer);
-        swimtime = promptSwimmer.promptSwimmersTime();
-        position = promptSwimmer.promptSwimmersPosition();
-        event = promptSwimmer.promptSwimmersEvent(); */
-
-
+        if (competitiveSwimmerToEdit == null) {
+            SystemMessages.printRedColoredText("No competitive swimmer found!");
+        }
     }
 
     // Initialize new swimmer prompts
     private void initNewCompetitiveSwimmerPrompts(){
-        newName = promptSwimmer.promptSwimmerName();
-        newBirthdate = promptSwimmer.promptBirthdate();
-        newPhone = promptSwimmer.promptSwimmerPhoneNumber();
-        newEmail = promptSwimmer.promptSwimmerEmail();
-        newDiscipline = Discipline.valueOf(promptSwimmer.addCompetitiveSwimmerDiscipline(competitiveSwimmer));
-        newSwimTime = promptSwimmer.promptSwimmersTime();
-        newPosition = promptSwimmer.promptSwimmersPosition();
-        newEvent = promptSwimmer.promptSwimmersEvent();
+        newName = promptUser.promptSwimmerName();
+        newBirthdate = promptUser.promptBirthdate();
+        newPhone = promptUser.promptSwimmerPhoneNumber();
+        newEmail = promptUser.promptSwimmerEmail();
+        newDiscipline = Discipline.valueOf(promptUser.addCompetitiveSwimmerDiscipline());
+        newSwimTime = promptUser.promptSwimmersTime();
+        newPosition = promptUser.promptSwimmersPosition();
+        newEvent = promptUser.promptSwimmersEvent();
 
     }
 
@@ -186,8 +202,5 @@ public class ModifySwimmer {
         competitiveSwimmersToEdit.setDiscipline(newDiscipline);
         competitiveSwimmersToEdit.setEvent(newEvent);
         competitiveSwimmersToEdit.setPosition(newPosition);
-
     }
-
-
 }

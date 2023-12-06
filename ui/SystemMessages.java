@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 public class SystemMessages {
 
+    // Print new info
+    public static void printNewInfo() {
+        UI.print(ConsoleColors.YELLOW_BOLD + "\nENTER NEW INFO\n");
+    }
+
     // Prints swimmer information
     public static void printSwimmer(Swimmer swimmer) {
         // EMPTY BODY
