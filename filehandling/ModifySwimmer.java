@@ -1,5 +1,6 @@
 package filehandling;
 
+import accountant.CalculateSwimmerSubscription;
 import swimmer.*;
 import ui.ConsoleColors;
 import ui.SystemMessages;
@@ -41,7 +42,8 @@ public class ModifySwimmer {
     }
 
     // Add competitive swimmer
-    public void addCompetitiveSwimmer(){
+    public void addCompetitiveSwimmer() {
+        boolean hasFoundCompetitiveSwimmer = false;
         UI.println("Who would you like to add as a competitive swimmer?");
         initCurrentSwimmerPrompts();
 
@@ -51,11 +53,22 @@ public class ModifySwimmer {
                 String swimTime = promptUser.promptSwimmersTime();
                 String position = promptUser.promptSwimmersPosition();
                 String event = promptUser.promptSwimmersEvent();
-                fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, swimmer.getBirthdate(), swimmer.getActivityType(), swimmer.getHasPaid(), phone, swimmer.getEmail(), discipline, swimTime, event, position));
 
-                SystemMessages.printGreenColoredText("Successfully made " + ConsoleColors.BLUE + name + ConsoleColors.GREEN_BRIGHT + " a competitive swimmer!");
+                fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, swimmer.getBirthdate(), phone, swimmer.getEmail(), swimmer.getActivityType(), swimmer.getHasPaid(), discipline, swimTime, event, position));
+
+                CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
+                calculateSwimmerSubscription.setCompetitiveSwimmersSubscription(fileHandling);
+                calculateSwimmerSubscription.checkIfPaid(fileHandling);
+
+                fileHandling.saveCompetitiveSwimmerToFile();
+
                 deleteSwimmer(name, phone);
+                SystemMessages.printGreenColoredText("Successfully made " + ConsoleColors.BLUE + name + ConsoleColors.GREEN_BRIGHT + " a competitive swimmer!");
+                hasFoundCompetitiveSwimmer = true;
             }
+        }
+        if (!hasFoundCompetitiveSwimmer) {
+            SystemMessages.printRedColoredText("No swimmer matching criteria");
         }
     }
 
