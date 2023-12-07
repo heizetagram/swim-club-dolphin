@@ -7,6 +7,7 @@ import ui.SystemMessages;
 import ui.UI;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ModifySwimmer {
     private FileHandling fileHandling;
@@ -206,20 +207,44 @@ public class ModifySwimmer {
     public void editPayment(FileHandling fileHandling) {
         initCurrentSwimmerPrompts();
         boolean foundSwimmer = false;
+         for (Swimmer swimmer : fileHandling.getSwimmers()) {
+                if (name.equals(swimmer.getName()) && phone.equals(swimmer.getPhone())) {
+                    UI.print("Enter payment status (true/false): ");
+                    String paymentStatus = validatePaymentStatus();
+                    swimmer.setHasPaid(paymentStatus);
+                    foundSwimmer = true;
+                    SystemMessages.printGreenColoredText("Successfully edited the payment");
+                }
+            }
 
-        for (Swimmer swimmer : fileHandling.getSwimmers()) {
-            if (name.equals(swimmer.getName()) && phone.equals(swimmer.getPhone())) {
-                swimmer.setHasPaid("true");
-                foundSwimmer = true;
+         if (!foundSwimmer) {
+             for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
+                 if (name.equals(competitiveSwimmer.getName()) && phone.equals(competitiveSwimmer.getPhone())) {
+                     UI.print("Enter payment status (true/false): ");
+                     String paymentStatus = validatePaymentStatus();
+                     competitiveSwimmer.setHasPaid(paymentStatus);
+                     foundSwimmer = true;
+                     SystemMessages.printGreenColoredText("Successfully edited the payment");
+                 }
             }
         }
 
-        if (!foundSwimmer) {
-            for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
-            competitiveSwimmer.setHasPaid("");
-            }
-        }
+         if (!foundSwimmer) {
+             SystemMessages.printRedColoredText("No swimmer matching criteria");
+         }
+        CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
+        calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("both", fileHandling);
         fileHandling.saveSwimmerToFile();
-        SystemMessages.printGreenColoredText("Succesfully edited the payment.");
+        fileHandling.saveCompetitiveSwimmerToFile();
+    }
+
+    private String validatePaymentStatus() {
+        String paymentStatus = UI.promptString();
+        while (!paymentStatus.equalsIgnoreCase("true") && !paymentStatus.equalsIgnoreCase("false")){
+            SystemMessages.printRedColoredText("Invalid input");
+            SystemMessages.printRedColoredText("Please enter 'true' or 'false'");
+            paymentStatus =UI.promptString();
+        }
+        return paymentStatus;
     }
 }

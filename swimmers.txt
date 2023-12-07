@@ -1,3 +1,3 @@
-Carsten, 30-12-2010, 12, 12312300, carsten@gmail.com, JUNIOR, ACTIVE, true, 0
+Carsten, 30-12-2010, 12, 12312300, carsten@gmail.com, JUNIOR, ACTIVE, false, 1000
 Bjarke, 12-12-2017, 5, 19191919, bjarke@dmai.com, JUNIOR, ACTIVE, false, 1000
 Dennis, 12-12-2001, 21, 12121212, dennis@dmai.com, SENIOR, ACTIVE, false, 1600
