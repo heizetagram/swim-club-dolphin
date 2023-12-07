@@ -14,13 +14,32 @@ public class Login {
         password = new Password();
     }
 
-    // Login Trainer
+
     public void loginTrainer(ChooseMenuOption chooseMenuOption) {
-        while (SystemRunning.isRunning()) { // Keep showing Customer's menu while logged in
+        UI.println("Enter password");
+        UI.promptString(); // Scanner bug
+        password.checkPassword(UI.promptString(), "1");
+        while (password.isPasswordCorrect() && SystemRunning.isRunning()) {
             ShowMenu.showTrainerMenu();
             chooseMenuOption.chooseTrainerMenuOption();
         }
+        if (!password.isPasswordCorrect()) {
+            SystemRunning.setRunning(false);
+        }
     }
+    public void loginCompetitiveTrainer(ChooseMenuOption chooseMenuOption) {
+        UI.println("Enter password");
+        UI.promptString(); // Scanner bug
+        password.checkPassword(UI.promptString(), "1");
+        while (password.isPasswordCorrect() && SystemRunning.isRunning()) {
+            ShowMenu.showCompetitiveTrainerMenu();
+            chooseMenuOption.chooseTrainerMenuOption();
+        }
+        if (!password.isPasswordCorrect()) {
+            SystemRunning.setRunning(false);
+        }
+    }
+
 
     // Foreman password
     public void loginForeman(ChooseMenuOption chooseMenuOption) {
@@ -40,7 +59,7 @@ public class Login {
     public void loginAccountant(ChooseMenuOption chooseMenuOption) {
         UI.println("Enter password");
         UI.promptString(); // Scanner bug
-        password.checkPassword(UI.promptString(), "1");
+        password.checkPassword(UI.promptString(), "2");
         while (password.isPasswordCorrect() && SystemRunning.isRunning()) { // Keep showing Accountant's menu while logged in
             ShowMenu.showAccountantMenu();
             chooseMenuOption.chooseAccountantMenuOption();
@@ -49,8 +68,5 @@ public class Login {
             SystemRunning.setRunning(false);
         }
         accountantLoggedIn = true;
-    }
-    public boolean isTrainerLoggedIn() {
-        return accountantLoggedIn;
     }
 }
