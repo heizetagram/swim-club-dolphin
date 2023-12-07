@@ -32,7 +32,7 @@ public class ChooseMenuOption {
             case 1 -> login.loginForeman(this);
             case 2 -> {ShowMenu.showTrainerMenu(); chooseTrainerMenuOption();}
             case 3 -> {ShowMenu.showCompetitiveTrainerMenu(); chooseCompetitiveTrainerMenuOption();}
-            case 4 -> {ShowMenu.showAccountantMenu(); chooseAccountantMenuOption();}
+            case 4 -> login.loginAccountant(this);
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }
