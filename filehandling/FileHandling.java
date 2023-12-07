@@ -1,5 +1,6 @@
 package filehandling;
 
+import accountant.CalculateSwimmerSubscription;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Swimmer;
 import java.io.BufferedWriter;
@@ -19,6 +20,8 @@ public class FileHandling {
         competitiveSwimmers = new ArrayList<>();
         loadSwimmerFromFile();
         loadCompetitiveSwimmerFromFile();
+        CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
+        calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("both", this);
     }
 
     // Load swimmers logic
