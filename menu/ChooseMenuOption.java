@@ -30,8 +30,8 @@ public class ChooseMenuOption {
     public void chooseRoleSelectionMenuOption() {
         switch (UI.promptInt()) {
             case 1 -> login.loginForeman(this);
-            case 2 -> {ShowMenu.showTrainerMenu(); chooseTrainerMenuOption();}
-            case 3 -> {ShowMenu.showCompetitiveTrainerMenu(); chooseCompetitiveTrainerMenuOption();}
+            case 2 -> login.loginTrainer(this);
+            case 3 -> login.loginCompetitiveTrainer(this);
             case 4 -> login.loginAccountant(this);
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
