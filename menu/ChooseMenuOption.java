@@ -11,6 +11,7 @@ import ui.UI;
 public class ChooseMenuOption {
     private ModifySwimmer modifySwimmer;
     private FileHandling fileHandling;
+    private SortSwimmers sortSwimmers;
     private PrintInfo printInfo;
     private Login login;
 
@@ -18,6 +19,7 @@ public class ChooseMenuOption {
     public ChooseMenuOption(FileHandling fileHandling) {
         this.fileHandling = fileHandling;
         modifySwimmer = new ModifySwimmer(fileHandling);
+        sortSwimmers = new SortSwimmers(fileHandling);
         printInfo = new PrintInfo();
         login = new Login();
     }
@@ -48,8 +50,6 @@ public class ChooseMenuOption {
 
     // Choose option in Competitive trainer's menu
     public void chooseCompetitiveTrainerMenuOption() {
-        SortSwimmers sortSwimmers = new SortSwimmers(fileHandling);
-
         switch (UI.promptInt()) {
             case 1 -> {printInfo.printAllRegularSwimmers(fileHandling); SystemMessages.pressEnterToContinue();} // add compareRegularName()
             // Tilføj en case der også kan vise competitive swimmer's info (ald er, email osv.)
@@ -79,6 +79,9 @@ public class ChooseMenuOption {
     // Choose option in Accountant's Menu
     public void chooseAccountantMenuOption() {
         switch (UI.promptInt()) {
+            // add compareSwimmerAgeGroupAndName
+            case 1 -> {sortSwimmers.compareCompetitiveAgeGroupAndName(); printInfo.printSwimmersInDebt(fileHandling); SystemMessages.pressEnterToContinue();}
+            case 2 -> {modifySwimmer.editPayment(fileHandling);SystemMessages.pressEnterToContinue();}
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }

@@ -7,14 +7,13 @@ import ui.UI;
 
 public class Login {
     private Password password;
-    private boolean accountantLoggedIn;
 
     // Constructor
     public Login() {
         password = new Password();
     }
 
-
+    // Login Trainer
     public void loginTrainer(ChooseMenuOption chooseMenuOption) {
         UI.println("Enter password");
         UI.promptString(); // Scanner bug
@@ -27,6 +26,8 @@ public class Login {
             SystemRunning.setRunning(false);
         }
     }
+
+    // Login Competitive Trainer
     public void loginCompetitiveTrainer(ChooseMenuOption chooseMenuOption) {
         UI.println("Enter password");
         UI.promptString(); // Scanner bug
@@ -67,6 +68,5 @@ public class Login {
         if (!password.isPasswordCorrect()) {
             SystemRunning.setRunning(false);
         }
-        accountantLoggedIn = true;
     }
 }

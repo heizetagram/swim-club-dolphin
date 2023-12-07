@@ -3,7 +3,7 @@ package master;
 import filehandling.FileHandling;
 import menu.ChooseMenuOption;
 import menu.ShowMenu;
-import accountant.CalculateSwimmerSubscription;
+import swimmer.CompetitiveSwimmer;
 import swimmer.Swimmer;
 import system.SystemRunning;
 
@@ -25,14 +25,14 @@ public class Master {
         initVars();
 
         for (Swimmer swimmer : fileHandling.getSwimmers()) {
-            swimmer.calculateAge(swimmer.convertBirthdateToLocalDate());
-            swimmer.calculateAgeGroup(swimmer.getAge());
+            swimmer.calculateAgeAndAgeGroup();
+        }
+        for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
+            competitiveSwimmer.calculateAgeAndAgeGroup();
         }
 
-        CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
-        calculateSwimmerSubscription.setSwimmersSubscription(fileHandling);
-        calculateSwimmerSubscription.setCompetitiveSwimmersSubscription(fileHandling);
-        calculateSwimmerSubscription.checkIfPaid(fileHandling);
+        fileHandling.saveSwimmerToFile();
+        fileHandling.saveCompetitiveSwimmerToFile();
 
         while (SystemRunning.isRunning()) {
             ShowMenu.showRoleSelection();

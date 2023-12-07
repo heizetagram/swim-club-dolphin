@@ -3,6 +3,7 @@ package accountant;
 import filehandling.FileHandling;
 import swimmer.CompetitiveSwimmer;
 import swimmer.Swimmer;
+import java.time.LocalDate;
 
 public class CalculateSwimmerSubscription {
     // Calculate swimmer subscription based on age group
@@ -16,7 +17,7 @@ public class CalculateSwimmerSubscription {
     }
 
     // Sets regular swimmer's subscription price
-    public void setSwimmersSubscription(FileHandling fileHandling) {
+    private void setSwimmersSubscription(FileHandling fileHandling) {
         for (Swimmer swimmer : fileHandling.getSwimmers()) {
             if (swimmer.getActivityType().equals("ACTIVE")) {
                 int subscriptionFee = calculateSubscriptionFee(swimmer);
@@ -28,7 +29,7 @@ public class CalculateSwimmerSubscription {
     }
 
     // Sets competitive swimmer's subscription price
-    public void setCompetitiveSwimmersSubscription(FileHandling fileHandling) {
+    private void setCompetitiveSwimmersSubscription(FileHandling fileHandling) {
         for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
             if (competitiveSwimmer.getActivityType().equals("ACTIVE")) {
                 int subscriptionFee = calculateSubscriptionFee(competitiveSwimmer);
@@ -40,7 +41,7 @@ public class CalculateSwimmerSubscription {
     }
 
     // Check if subscription is paid
-    public void checkIfPaid(FileHandling fileHandling) {
+    private void checkIfPaid(FileHandling fileHandling) {
         for (Swimmer swimmer : fileHandling.getSwimmers()) {
             if (swimmer.getHasPaid().equals("true")) {
                 swimmer.setSubscriptionFee(0);
@@ -50,6 +51,37 @@ public class CalculateSwimmerSubscription {
             if (competitiveSwimmer.getHasPaid().equals("true")) {
                 competitiveSwimmer.setSubscriptionFee(0);
             }
+        }
+    }
+
+    public void setAllSwimmersSubscriptionFee(String swimmerType, FileHandling fileHandling) {
+        if (swimmerType.equals("regular")) {
+            setSwimmersSubscription(fileHandling);
+        } else if (swimmerType.equals("competitive")) {
+            setCompetitiveSwimmersSubscription(fileHandling);
+        } else if(swimmerType.equals("both")) {
+            setSwimmersSubscription(fileHandling);
+            setCompetitiveSwimmersSubscription(fileHandling);
+        }
+        checkIfPaid(fileHandling);
+    }
+
+    public void resetSubscriptionAnnually(FileHandling fileHandling) {
+        LocalDate currentDate = LocalDate.now();
+        System.out.println(currentDate.getDayOfYear());
+
+        // Resets subscription fee every January 1st
+        if (currentDate.getDayOfYear() == 1) {
+            for (Swimmer swimmer : fileHandling.getSwimmers()) {
+                swimmer.setHasPaid("false");
+            }
+            for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
+                competitiveSwimmer.setHasPaid("false");
+            }
+            setSwimmersSubscription(fileHandling);
+            setCompetitiveSwimmersSubscription(fileHandling);
+            fileHandling.saveSwimmerToFile();
+            fileHandling.saveCompetitiveSwimmerToFile();
         }
     }
 }
