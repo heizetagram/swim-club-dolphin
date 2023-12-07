@@ -7,7 +7,6 @@ import ui.UI;
 
 public class Login {
     private Password password;
-    private boolean accountantLoggedIn;
 
     // Constructor
     public Login() {
@@ -48,9 +47,5 @@ public class Login {
         if (!password.isPasswordCorrect()) {
             SystemRunning.setRunning(false);
         }
-        accountantLoggedIn = true;
-    }
-    public boolean isTrainerLoggedIn() {
-        return accountantLoggedIn;
     }
 }
