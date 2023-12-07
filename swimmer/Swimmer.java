@@ -22,12 +22,11 @@ public class Swimmer {
         this.email = email;
         this.activityType = activityType;
         this.hasPaid = hasPaid;
-        age = calculateAge(convertBirthdateToLocalDate());
-        ageGroup = calculateAgeGroup(age);
+        calculateAgeAndAgeGroup();
     }
 
     // Converts String birthdate to LocalDateTime
-    public LocalDate convertBirthdateToLocalDate() {
+    private LocalDate convertBirthdateToLocalDate() {
         String[] parts = birthdate.split("-");
 
         int day = Integer.parseInt(parts[0]);
@@ -39,13 +38,13 @@ public class Swimmer {
 
     // Calculates age
     // Subtracts user-given birthdate from the current date
-    public int calculateAge(LocalDate birthdate) {
+    private int calculateAge(LocalDate birthdate) {
         Period yearDifference = Period.between(birthdate, LocalDate.now());
         return yearDifference.getYears();
     }
 
     // Calculates age group
-    public String calculateAgeGroup(int age) {
+    private String calculateAgeGroup(int age) {
         String ageGroup;
         if (age < 18) {
             ageGroup = "JUNIOR";
@@ -55,6 +54,12 @@ public class Swimmer {
             ageGroup = "ELDERLY";
         }
         return ageGroup;
+    }
+
+    // Calculates age and age group
+    public void calculateAgeAndAgeGroup () {
+        age = calculateAge(convertBirthdateToLocalDate());
+        ageGroup = calculateAgeGroup(age);
     }
 
     // Getters
