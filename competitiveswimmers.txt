@@ -1,4 +1,4 @@
-Kaj, 05-06-2008, 15, 12312383, jsaidf@gmail.com, JUNIOR, ACTIVE, false, 1000, MEDLEY, 06:20:10, t1, 3
+Kaj, 05-06-2001, 22, 12312383, jsaidf@gmail.com, SENIOR, PASSIVE, false, 500, MEDLEY, 06:20:10, t1, 3
 Løkke, 05-06-2007, 16, 12313952, grgrgr@dk.dk, JUNIOR, ACTIVE, false, 1000, MEDLEY, 03:02:01, t1, 3
 Bob, 10-02-2001, 22, 82739273, ed@.dk, SENIOR, ACTIVE, false, 1600, BREAST, 08:02:20, t1, 3
 Christian, 07-02-2000, 23, 42424242, d@.dk, SENIOR, ACTIVE, false, 1600, CRAWL, 08:05:03, t1, 3
@@ -14,3 +14,5 @@ Bjorg, 10-10-2003, 20, 12837462, test@gai.com, SENIOR, ACTIVE, false, 1600, BACK
 Cim, 01-01-2010, 13, 83927463, cim@gmail.com, JUNIOR, ACTIVE, false, 1000, MEDLEY, 12:20:30, t2, 4
 Danny, 27-04-1999, 24, 98765432, danilu@gmail.com, SENIOR, ACTIVE, false, 1600, CRAWL, 12:12:20, t2, 3
 Lchaim, 10-10-2006, 17, 91847263, lchaim@yahoo.com, JUNIOR, ACTIVE, false, 1000, BREAST, 13:20:30, t2, 4
+hej, 12-12-2000, 22, 32323232, jdaos@gna.com, SENIOR, ACTIVE, false, 1600, CRAWL, 12:12:20, t1, 4
+Lasse, 12-12-2000, 22, 50505050, lasse@gmail.com, SENIOR, ACTIVE, false, 1600, BREAST, 12:12:20, t2, 4
