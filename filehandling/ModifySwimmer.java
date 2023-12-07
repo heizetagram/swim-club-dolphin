@@ -57,8 +57,7 @@ public class ModifySwimmer {
                 fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, swimmer.getBirthdate(), phone, swimmer.getEmail(), swimmer.getActivityType(), swimmer.getHasPaid(), discipline, swimTime, event, position));
 
                 CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
-                calculateSwimmerSubscription.setCompetitiveSwimmersSubscription(fileHandling);
-                calculateSwimmerSubscription.checkIfPaid(fileHandling);
+                calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("competitive", fileHandling);
 
                 fileHandling.saveCompetitiveSwimmerToFile();
 
@@ -117,9 +116,10 @@ public class ModifySwimmer {
                 initNewSwimmerPrompts();
 
                 setValueOfSwimmersToEdit(swimmerToEdit);
-                swimmer.calculateAge(swimmer.convertBirthdateToLocalDate());
-                swimmer.calculateAgeGroup(swimmer.getAge());
-                // -- Husk at calculate membership
+                swimmer.calculateAgeAndAgeGroup();
+
+                CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
+                calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("regular", fileHandling);
 
                 fileHandling.saveSwimmerToFile();
                 SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
@@ -167,8 +167,7 @@ public class ModifySwimmer {
                 initNewCompetitiveSwimmerPrompts();
 
                 setValueOfCompetitiveSwimmersToEdit(competitiveSwimmerToEdit);
-                competitiveSwimmer.calculateAge(competitiveSwimmer.convertBirthdateToLocalDate());
-                competitiveSwimmer.calculateAgeGroup(competitiveSwimmer.getAge());
+                competitiveSwimmer.calculateAgeAndAgeGroup();
 
                 fileHandling.saveCompetitiveSwimmerToFile();
                 SystemMessages.printGreenColoredText("Successfully edited competitive swimmer");
@@ -202,5 +201,25 @@ public class ModifySwimmer {
         competitiveSwimmersToEdit.setDiscipline(newDiscipline);
         competitiveSwimmersToEdit.setEvent(newEvent);
         competitiveSwimmersToEdit.setPosition(newPosition);
+    }
+
+    public void editPayment(FileHandling fileHandling) {
+        initCurrentSwimmerPrompts();
+        boolean foundSwimmer = false;
+
+        for (Swimmer swimmer : fileHandling.getSwimmers()) {
+            if (name.equals(swimmer.getName()) && phone.equals(swimmer.getPhone())) {
+                swimmer.setHasPaid("true");
+                foundSwimmer = true;
+            }
+        }
+
+        if (!foundSwimmer) {
+            for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
+            competitiveSwimmer.setHasPaid("");
+            }
+        }
+        fileHandling.saveSwimmerToFile();
+        SystemMessages.printGreenColoredText("Succesfully edited the payment.");
     }
 }
