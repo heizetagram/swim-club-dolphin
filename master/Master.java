@@ -1,7 +1,7 @@
 package master;
 
 import filehandling.FileHandling;
-import filehandling.LoadAge;
+import swimmer.LoadAge;
 import menu.ChooseMenuOption;
 import menu.ShowMenu;
 import system.SystemRunning;
