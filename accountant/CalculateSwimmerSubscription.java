@@ -66,9 +66,9 @@ public class CalculateSwimmerSubscription {
         checkIfPaid(fileHandling);
     }
 
+    // Resets subscription for all swimmers annually
     public void resetSubscriptionAnnually(FileHandling fileHandling) {
         LocalDate currentDate = LocalDate.now();
-        System.out.println(currentDate.getDayOfYear());
 
         // Resets subscription fee every January 1st
         if (currentDate.getDayOfYear() == 1) {
