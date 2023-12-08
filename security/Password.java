@@ -28,7 +28,7 @@ public class Password {
         }
         if (userInput.equals(password)) {
             passwordIsCorrect = true;
-            UI.println(ConsoleColors.GREEN_BRIGHT + "\nSuccessfully logged in\n" + ConsoleColors.RESET);
+            UI.println(ConsoleColors.GREEN_BRIGHT + "Successfully logged in\n" + ConsoleColors.RESET);
         } else {
             UI.println(ConsoleColors.RED + "Failed to Login" + ConsoleColors.RESET);
         }
