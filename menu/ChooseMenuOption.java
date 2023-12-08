@@ -9,11 +9,11 @@ import ui.SystemMessages;
 import ui.UI;
 
 public class ChooseMenuOption {
-    private ModifySwimmer modifySwimmer;
-    private FileHandling fileHandling;
-    private SortSwimmers sortSwimmers;
-    private PrintInfo printInfo;
-    private Login login;
+    private final ModifySwimmer modifySwimmer;
+    private final FileHandling fileHandling;
+    private final SortSwimmers sortSwimmers;
+    private final PrintInfo printInfo;
+    private final Login login;
 
     // Constructor
     public ChooseMenuOption(FileHandling fileHandling) {
