@@ -7,7 +7,7 @@ import swimmer.Swimmer;
 import java.util.Comparator;
 
 public class SortSwimmers {
-    private FileHandling fileHandling;
+    private final FileHandling fileHandling;
 
     public SortSwimmers(FileHandling fileHandling) {
         this.fileHandling = fileHandling;
