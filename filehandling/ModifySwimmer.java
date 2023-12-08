@@ -5,13 +5,12 @@ import swimmer.*;
 import ui.ConsoleColors;
 import ui.SystemMessages;
 import ui.UI;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ModifySwimmer {
     private FileHandling fileHandling;
     private PromptUser promptUser;
+    private CalculateSwimmerSubscription calculateSwimmerSubscription;
     private String name;
     private String phone;
     private String newName;
@@ -27,6 +26,7 @@ public class ModifySwimmer {
     public ModifySwimmer(FileHandling fileHandling) {
         this.fileHandling = fileHandling;
         promptUser = new PromptUser();
+        calculateSwimmerSubscription = new CalculateSwimmerSubscription();
     }
 
     // Add swimmer
@@ -56,13 +56,10 @@ public class ModifySwimmer {
                 String event = promptUser.promptSwimmersEvent();
 
                 fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, swimmer.getBirthdate(), phone, swimmer.getEmail(), swimmer.getActivityType(), swimmer.getHasPaid(), discipline, swimTime, event, position));
-
-                CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
                 calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("competitive", fileHandling);
-
                 fileHandling.saveCompetitiveSwimmerToFile();
-
                 deleteSwimmer(name, phone);
+
                 SystemMessages.printGreenColoredText("Successfully made " + ConsoleColors.BLUE + name + ConsoleColors.GREEN_BRIGHT + " a competitive swimmer!");
                 hasFoundCompetitiveSwimmer = true;
             }
@@ -118,11 +115,9 @@ public class ModifySwimmer {
 
                 setValueOfSwimmersToEdit(swimmerToEdit);
                 swimmer.calculateAgeAndAgeGroup();
-
-                CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
                 calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("regular", fileHandling);
-
                 fileHandling.saveSwimmerToFile();
+
                 SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
             }
         }
@@ -204,6 +199,7 @@ public class ModifySwimmer {
         competitiveSwimmersToEdit.setPosition(newPosition);
     }
 
+    // Edit payment
     public void editPayment(FileHandling fileHandling) {
         initCurrentSwimmerPrompts();
         boolean foundSwimmer = false;
@@ -232,12 +228,12 @@ public class ModifySwimmer {
          if (!foundSwimmer) {
              SystemMessages.printRedColoredText("No swimmer matching criteria");
          }
-        CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
         calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("both", fileHandling);
         fileHandling.saveSwimmerToFile();
         fileHandling.saveCompetitiveSwimmerToFile();
     }
 
+    // Validate payment status
     private String validatePaymentStatus() {
         String paymentStatus = UI.promptString();
         while (!paymentStatus.equalsIgnoreCase("true") && !paymentStatus.equalsIgnoreCase("false")){
