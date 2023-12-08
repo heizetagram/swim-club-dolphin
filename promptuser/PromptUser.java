@@ -1,4 +1,4 @@
-package swimmer;
+package promptuser;
 
 import date.CheckDate;
 import menu.ShowMenu;
