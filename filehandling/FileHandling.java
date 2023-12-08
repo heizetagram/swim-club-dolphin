@@ -20,9 +20,9 @@ public class FileHandling {
         competitiveSwimmers = new ArrayList<>();
         loadSwimmerFromFile();
         loadCompetitiveSwimmerFromFile();
-        CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription();
-        calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("both", this);
-        calculateSwimmerSubscription.resetSubscriptionAnnually(this);
+        CalculateSwimmerSubscription calculateSwimmerSubscription = new CalculateSwimmerSubscription(this);
+        calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("both");
+        calculateSwimmerSubscription.resetSubscriptionAnnually();
     }
 
     // Load swimmers logic
