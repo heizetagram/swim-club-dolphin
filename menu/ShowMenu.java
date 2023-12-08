@@ -16,12 +16,12 @@ public class ShowMenu {
     }
 
     public static void showForemanMenu() {
-        UI.println("(1) Add swimmer");
-        UI.println("(2) Delete swimmer");
-        UI.println("(3) Edit swimmer");
-        UI.println("(4) Edit competitive swimmers");
-        UI.println("(5) Add competitive swimmer");
-        UI.println("(6) Add Event/position");
+        UI.println("(1) View regular swimmers");
+        UI.println("(2) View competitive swimmers");
+        UI.println("(3) Add swimmer");
+        UI.println("(4) Add competitive swimmer");
+        UI.println("(5) Edit swimmer");
+        UI.println("(6) Edit competitive swimmers");
         UI.println("(9) Quit");
     }
 
@@ -37,6 +37,7 @@ public class ShowMenu {
         UI.println("(3) View top 5 swim times");
         UI.println("(4) Add competitive swimmer");
         UI.println("(5) Edit competitive swimmer");
+        UI.println("(6) Add event/position");
         UI.println("(9) Quit");
     }
 
