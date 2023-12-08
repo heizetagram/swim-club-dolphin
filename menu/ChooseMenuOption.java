@@ -20,7 +20,7 @@ public class ChooseMenuOption {
         this.fileHandling = fileHandling;
         modifySwimmer = new ModifySwimmer(fileHandling);
         sortSwimmers = new SortSwimmers(fileHandling);
-        printInfo = new PrintInfo();
+        printInfo = new PrintInfo(fileHandling);
         login = new Login();
     }
 
@@ -41,7 +41,7 @@ public class ChooseMenuOption {
     // Choose option in Trainer's Menu
     public void chooseTrainerMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> {printInfo.printAllRegularSwimmers(fileHandling); SystemMessages.pressEnterToContinue();}
+            case 1 -> {sortSwimmers.compareSwimmerAgeGroupAndName(); printInfo.printAllRegularSwimmers(); SystemMessages.pressEnterToContinue();}
             case 2 -> {modifySwimmer.editSwimmer(); SystemMessages.pressEnterToContinue();}
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
@@ -51,12 +51,12 @@ public class ChooseMenuOption {
     // Choose option in Competitive trainer's menu
     public void chooseCompetitiveTrainerMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> {printInfo.printAllRegularSwimmers(fileHandling); SystemMessages.pressEnterToContinue();} // add compareRegularName()
-            // Tilføj en case der også kan vise competitive swimmer's info (ald er, email osv.)
-            case 2 -> {sortSwimmers.compareCompetitiveAgeGroupAndName(); printInfo.printAllCompetitiveSwimmers(fileHandling); SystemMessages.pressEnterToContinue();}
-            case 3 -> {sortSwimmers.compareCompetitiveDisciplineAndSwimTime(); printInfo.printTop5CompetitiveSwimmers(fileHandling); SystemMessages.pressEnterToContinue();}
+            case 1 -> {sortSwimmers.compareSwimmerAgeGroupAndName(); printInfo.printAllRegularSwimmers(); SystemMessages.pressEnterToContinue();}
+            case 2 -> {sortSwimmers.compareCompetitiveAgeGroupAndName(); printInfo.printAllCompetitiveSwimmers(); SystemMessages.pressEnterToContinue();}
+            case 3 -> {sortSwimmers.compareCompetitiveDisciplineAndSwimTime(); printInfo.printTop5CompetitiveSwimmers(); SystemMessages.pressEnterToContinue();}
             case 4 -> {modifySwimmer.addCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
             case 5 -> {modifySwimmer.editCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
+            case 6 -> {modifySwimmer.addEventAndPosition(); SystemMessages.pressEnterToContinue();}
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }
@@ -65,12 +65,12 @@ public class ChooseMenuOption {
     // Choose option in Foreman's Menu
     public void chooseForemanMenuOption() {
         switch (UI.promptInt()) {
-            case 1 -> {modifySwimmer.addSwimmer(); SystemMessages.pressEnterToContinue();}
-            //case 2 -> {modifySwimmer.deleteSwimmer(); SystemMessages.pressEnterToContinue();}
-            case 3 -> {modifySwimmer.editSwimmer(); SystemMessages.pressEnterToContinue();}
-            case 4 -> {modifySwimmer.editCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
-            case 5 -> {modifySwimmer.addCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
-            case 6 -> {modifySwimmer.addEventAndPosition(); SystemMessages.pressEnterToContinue();}
+            case 1 -> {sortSwimmers.compareSwimmerAgeGroupAndName(); printInfo.printAllRegularSwimmers(); SystemMessages.pressEnterToContinue();} // add compareRegularName()
+            case 2 -> {sortSwimmers.compareCompetitiveAgeGroupAndName(); printInfo.printAllCompetitiveSwimmers(); SystemMessages.pressEnterToContinue();}
+            case 3 -> {modifySwimmer.addSwimmer(); SystemMessages.pressEnterToContinue();}
+            case 4 -> {modifySwimmer.addCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
+            case 5 -> {modifySwimmer.editSwimmer(); SystemMessages.pressEnterToContinue();}
+            case 6 -> {modifySwimmer.editCompetitiveSwimmer(); SystemMessages.pressEnterToContinue();}
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
         }
@@ -79,8 +79,7 @@ public class ChooseMenuOption {
     // Choose option in Accountant's Menu
     public void chooseAccountantMenuOption() {
         switch (UI.promptInt()) {
-            // add compareSwimmerAgeGroupAndName
-            case 1 -> {sortSwimmers.compareCompetitiveAgeGroupAndName(); printInfo.printSwimmersInDebt(fileHandling); SystemMessages.pressEnterToContinue();}
+            case 1 -> {sortSwimmers.compareSwimmerAgeGroupAndName(); sortSwimmers.compareCompetitiveAgeGroupAndName(); printInfo.printSwimmersInDebt(); SystemMessages.pressEnterToContinue();}
             case 2 -> {modifySwimmer.editPayment(fileHandling);SystemMessages.pressEnterToContinue();}
             case 9 -> SystemMessages.quitSystem();
             default -> SystemMessages.tryAgain();
