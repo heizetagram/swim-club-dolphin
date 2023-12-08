@@ -34,7 +34,7 @@ public class Login {
         password.checkPassword(UI.promptString(), "1");
         while (password.isPasswordCorrect() && SystemRunning.isRunning()) {
             ShowMenu.showCompetitiveTrainerMenu();
-            chooseMenuOption.chooseTrainerMenuOption();
+            chooseMenuOption.chooseCompetitiveTrainerMenuOption();
         }
         if (!password.isPasswordCorrect()) {
             SystemRunning.setRunning(false);
