@@ -8,7 +8,7 @@ import ui.SystemMessages;
 import ui.UI;
 
 public class PrintInfo {
-    private FileHandling fileHandling;
+    private final FileHandling fileHandling;
 
     public PrintInfo(FileHandling fileHandling) {
         this.fileHandling = fileHandling;
