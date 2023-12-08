@@ -1,6 +1,7 @@
 package filehandling;
 
 import accountant.CalculateSwimmerSubscription;
+import promptuser.PromptUser;
 import swimmer.*;
 import ui.ConsoleColors;
 import ui.SystemMessages;
@@ -8,9 +9,9 @@ import ui.UI;
 import java.util.ArrayList;
 
 public class ModifySwimmer {
-    private FileHandling fileHandling;
-    private PromptUser promptUser;
-    private CalculateSwimmerSubscription calculateSwimmerSubscription;
+    private final FileHandling fileHandling;
+    private final PromptUser promptUser;
+    private final CalculateSwimmerSubscription calculateSwimmerSubscription;
     private String name;
     private String phone;
     private String newName;
@@ -26,7 +27,7 @@ public class ModifySwimmer {
     public ModifySwimmer(FileHandling fileHandling) {
         this.fileHandling = fileHandling;
         promptUser = new PromptUser();
-        calculateSwimmerSubscription = new CalculateSwimmerSubscription();
+        calculateSwimmerSubscription = new CalculateSwimmerSubscription(fileHandling);
     }
 
     // Add swimmer
@@ -56,7 +57,7 @@ public class ModifySwimmer {
                 String event = promptUser.promptSwimmersEvent();
 
                 fileHandling.getCompetitiveSwimmers().add(new CompetitiveSwimmer(name, swimmer.getBirthdate(), phone, swimmer.getEmail(), swimmer.getActivityType(), swimmer.getHasPaid(), discipline, swimTime, event, position));
-                calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("competitive", fileHandling);
+                calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("competitive");
                 fileHandling.saveCompetitiveSwimmerToFile();
                 deleteSwimmer(name, phone);
 
@@ -115,7 +116,7 @@ public class ModifySwimmer {
 
                 setValueOfSwimmersToEdit(swimmerToEdit);
                 swimmer.calculateAgeAndAgeGroup();
-                calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("regular", fileHandling);
+                calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("regular");
                 fileHandling.saveSwimmerToFile();
 
                 SystemMessages.printGreenColoredText("Successfully edited Swimmer\n");
@@ -228,7 +229,7 @@ public class ModifySwimmer {
          if (!foundSwimmer) {
              SystemMessages.printRedColoredText("No swimmer matching criteria");
          }
-        calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("both", fileHandling);
+        calculateSwimmerSubscription.setAllSwimmersSubscriptionFee("both");
         fileHandling.saveSwimmerToFile();
         fileHandling.saveCompetitiveSwimmerToFile();
     }
