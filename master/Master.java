@@ -1,10 +1,9 @@
 package master;
 
 import filehandling.FileHandling;
+import filehandling.LoadAge;
 import menu.ChooseMenuOption;
 import menu.ShowMenu;
-import swimmer.CompetitiveSwimmer;
-import swimmer.Swimmer;
 import system.SystemRunning;
 
 public class Master {
@@ -14,6 +13,7 @@ public class Master {
     private void initVars() {
         fileHandling = new FileHandling();
         chooseMenuOption = new ChooseMenuOption(fileHandling);
+        LoadAge.loadAge(fileHandling);
         SystemRunning.setRunning(true);
     }
 
@@ -23,16 +23,6 @@ public class Master {
 
     private void run() {
         initVars();
-
-        for (Swimmer swimmer : fileHandling.getSwimmers()) {
-            swimmer.calculateAgeAndAgeGroup();
-        }
-        for (CompetitiveSwimmer competitiveSwimmer : fileHandling.getCompetitiveSwimmers()) {
-            competitiveSwimmer.calculateAgeAndAgeGroup();
-        }
-
-        fileHandling.saveSwimmerToFile();
-        fileHandling.saveCompetitiveSwimmerToFile();
 
         while (SystemRunning.isRunning()) {
             ShowMenu.showRoleSelection();
