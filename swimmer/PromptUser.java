@@ -128,6 +128,7 @@ public class PromptUser {
         }
         return phoneDigits;
     }
+
     // Checks if phone digits is 8
     private String checkIfPhoneDigitsIs8(String phoneDigits) {
         Scanner scan = new Scanner(System.in);
