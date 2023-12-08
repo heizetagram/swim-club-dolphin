@@ -6,7 +6,7 @@ import system.SystemRunning;
 import ui.UI;
 
 public class Login {
-    private Password password;
+    private final Password password;
 
     // Constructor
     public Login() {
