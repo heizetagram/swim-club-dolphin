@@ -3,7 +3,7 @@ package ui;
 import java.util.Scanner;
 
 public class UI {
-    private static Scanner scan;
+    private static final Scanner scan;
 
     public static void print(String text) {
         System.out.print(text);
