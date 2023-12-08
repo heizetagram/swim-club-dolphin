@@ -2,6 +2,7 @@ package trainer;
 
 import filehandling.FileHandling;
 import swimmer.CompetitiveSwimmer;
+import swimmer.Swimmer;
 
 import java.util.Comparator;
 
@@ -22,6 +23,12 @@ public class SortSwimmers {
     public void compareCompetitiveAgeGroupAndName() {
         Comparator<CompetitiveSwimmer> byAgeGroupAndName = Comparator.comparing(CompetitiveSwimmer::getAgeGroup).thenComparing(CompetitiveSwimmer::getName);
         fileHandling.getCompetitiveSwimmers().sort(byAgeGroupAndName);
+    }
+
+    // Sort regular swimmer by age group and name
+    public void compareSwimmerAgeGroupAndName() {
+        Comparator<Swimmer> byAgeGroupAndName = Comparator.comparing(Swimmer::getAgeGroup).thenComparing(Swimmer::getName);
+        fileHandling.getSwimmers().sort(byAgeGroupAndName);
     }
 }
 
