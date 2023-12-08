@@ -1,7 +1,6 @@
-package filehandling;
+package swimmer;
 
-import swimmer.CompetitiveSwimmer;
-import swimmer.Swimmer;
+import filehandling.FileHandling;
 
 public class LoadAge {
     // Loads age and sets age in ArrayLists + .txt files
