@@ -29,6 +29,7 @@ public class PrintInfo {
     // Prints all competitive swimmers' info
     private void printCompetitiveSwimmerInfo(CompetitiveSwimmer competitiveSwimmer) {
         UI.println(competitiveSwimmer.getName());
+        UI.printf("   %s%-13s%s +45 %s\n", ConsoleColors.GREEN_BRIGHT, "Phone:", ConsoleColors.RESET, competitiveSwimmer.getPhone());
         UI.printf("   %s%-13s%s %s\n", ConsoleColors.GREEN_BRIGHT, "Team:", ConsoleColors.RESET, competitiveSwimmer.getAgeGroup());
         UI.printf("   %s%-13s%s %s\n", ConsoleColors.GREEN_BRIGHT, "Discipline:", ConsoleColors.RESET, competitiveSwimmer.getDiscipline());
         UI.printf("   %s%-13s%s %s\n", ConsoleColors.GREEN_BRIGHT, "Pers. Record:", ConsoleColors.RESET, competitiveSwimmer.getSwimTime());
